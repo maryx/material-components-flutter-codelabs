@@ -4,46 +4,6 @@ import 'package:intl/intl.dart';
 import 'model/data.dart';
 import 'model/product.dart';
 
-List<Card> _buildGridCards(BuildContext context, List<Product> products) {
-  List<Card> cards = List.generate(
-      products.length,
-      (int index) => Card(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            AspectRatio(
-              aspectRatio: 16 / 11,
-              child: Image.asset(
-                'assets/${products[index].id}-1.jpg',
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-            Expanded(
-                child: Padding(
-              padding: EdgeInsets.fromLTRB(
-                16.0,
-                12.0,
-                16.0,
-                8.0,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  // TODO(larche): Make headline6 when available
-                  Text(products[index].name,
-                      style: Theme.of(context).textTheme.caption),
-                  //SizedBox(height: 8.0,),
-                  // TODO(larche): Make subtitle2 when available
-                  Text('${products[index].priceString}',
-                      style: Theme.of(context).textTheme.body2),
-                ],
-              ),
-            ))
-          ],
-        ),
-      )
-  );
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -80,14 +40,14 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     // TODO(larche): Make headline6 when available
-                    Text(
+                    new Text(
                       product.name,
                       style: theme.textTheme.title,
                       maxLines: 1,
                     ),
                     SizedBox(height: 8.0),
                     // TODO(larche): Make subtitle2 when available
-                    Text(
+                    new Text(
                       formatter.format(product.price),
                       style: theme.textTheme.body2,
                     ),
@@ -106,21 +66,21 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.menu),
+          icon: const Icon(Icons.menu),
           onPressed: () {
             print('Menu button');
           },
         ),
-        title: Text('SHRINE'),
+        title: const Text('SHRINE'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {
               print('Search button');
             },
           ),
           IconButton(
-            icon: Icon(Icons.tune),
+            icon: const Icon(Icons.tune),
             onPressed: () {
               print('Filter button');
             },

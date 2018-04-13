@@ -22,21 +22,21 @@ class _HomePageState extends State<HomePage> {
         locale: Localizations.localeOf(context).toString());
 
     return products.map((product) {
-      return new Card(
-        child: new Column(
+      return Card(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            new AspectRatio(
+            AspectRatio(
               aspectRatio: 18 / 11,
-              child: new Image.asset(
+              child: Image.asset(
                 'assets/${product.id}-1.jpg',
                 fit: BoxFit.fitWidth,
               ),
             ),
-            new Expanded(
-              child: new Padding(
-                padding: new EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
-                child: new Column(
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     // TODO(larche): Make headline6 when available
@@ -45,9 +45,9 @@ class _HomePageState extends State<HomePage> {
                       style: theme.textTheme.title,
                       maxLines: 1,
                     ),
-                    new SizedBox(height: 8.0),
+                    SizedBox(height: 8.0),
                     // TODO(larche): Make subtitle2 when available
-                    new Text(
+                    Text(
                       formatter.format(product.price),
                       style: theme.textTheme.body2,
                     ),
@@ -63,15 +63,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+      appBar: AppBar(
         leading: new IconButton(
           icon: const Icon(Icons.menu),
           onPressed: () {
             print('Menu button');
           },
         ),
-        title: const Text('SHRINE'),
+        title: Text('SHRINE'),
         actions: <Widget>[
           new IconButton(
             icon: const Icon(Icons.search),
@@ -87,11 +87,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: new Center(
-        child: new GridView.count(
+      body: Center(
+        child: GridView.count(
           crossAxisCount: 2,
           children: _buildGridCards(),
-          padding: new EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           mainAxisSpacing: 8.0,
           childAspectRatio: 8.0 / 9.0,
         ),

@@ -6,20 +6,20 @@ import 'notched_corner_border.dart';
 class LoginPage extends StatefulWidget {
   @override
   LoginPageState createState() {
-    return new LoginPageState();
+    return LoginPageState();
   }
 }
 
 class LoginPageState extends State<LoginPage> {
-  final _usernameController = new TextEditingController();
-  final _passwordController = new TextEditingController();
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   Widget _buildLogo() {
-    return new Column(
+    return Column(
       children: <Widget>[
-        new Image.asset('assets/diamond.png'),
-        const SizedBox(height: 16.0),
-        new Text(
+        Image.asset('assets/diamond.png'),
+        SizedBox(height: 16.0),
+        Text(
           'SHRINE',
           style: Theme.of(context).textTheme.headline,
         ),
@@ -41,24 +41,28 @@ class LoginPageState extends State<LoginPage> {
   // TODO Demo 1 result
   Widget _buildTextField(
       String label, TextEditingController controller, bool obscureText) {
-    return new Theme(
-      data: Theme.of(context).copyWith(primaryColor: kShrineBrown900),
-      child: new TextField(
-        controller: controller,
-        decoration: new InputDecoration(
-          labelText: label,
-          border: new NotchedCornerBorder(),
+    return Container(
+      width: 200.0,
+      height: 240.0,
+      child: Theme(
+        data: Theme.of(context).copyWith(primaryColor: kShrineBrown900),
+        child: TextField(
+          controller: controller,
+          decoration: InputDecoration(
+            labelText: label,
+            border: NotchedCornerBorder(),
+          ),
+          obscureText: obscureText,
         ),
-        obscureText: obscureText,
       ),
     );
   }
 
   Widget _buildButtonBar() {
-    return new ButtonBar(
+    return ButtonBar(
       children: <Widget>[
-        new FlatButton(
-          child: const Text('CANCEL'),
+        FlatButton(
+          child: Text('CANCEL'),
           // TODO demo 2
           //shape: BeveledRectangleBorder(
           //  borderRadius: BorderRadius.all(Radius.circular(7.0)),
@@ -68,8 +72,8 @@ class LoginPageState extends State<LoginPage> {
             _passwordController.clear();
           },
         ),
-        new RaisedButton(
-          child: const Text('NEXT'),
+        RaisedButton(
+          child: Text('NEXT'),
           elevation: 8.0,
           // TODO demo 2
           //shape: BeveledRectangleBorder(
@@ -86,16 +90,16 @@ class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     // TODO step 0: Start here
-    return new Scaffold(
-      body: new SafeArea(
-        child: new ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+    return Scaffold(
+      body: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            const SizedBox(height: 80.0),
+            //SizedBox(height: 80.0),
             _buildLogo(),
-            const SizedBox(height: 120.0),
+            //SizedBox(height: 120.0),
             _buildTextField('Username', _usernameController, false),
-            const SizedBox(height: 12.0),
+            //SizedBox(height: 12.0),
             _buildTextField('Password', _passwordController, true),
             _buildButtonBar(),
           ],
@@ -115,7 +119,7 @@ class PrimaryColorOverride extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Theme(
+    return Theme(
       child: child,
       data: Theme.of(context).copyWith(primaryColor: color),
     );

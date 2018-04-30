@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'backdrop.dart';
 import 'home.dart';
 import 'login.dart';
 import 'notched_corner_border.dart';
@@ -14,10 +15,15 @@ class ShrineApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shrine',
-      home: HomePage(),
+      home: Backdrop(
+        currentCategory: null,
+        frontPanel: HomePage(),
+        backPanel: Container(color: kShrinePink50),
+        frontTitle: Text('Shrine'),
+        backTitle: Text('Menu'),
+      ),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
-      // TODO demo 3
       theme: _buildShrineTheme(),
     );
   }
@@ -41,26 +47,28 @@ IconThemeData _customIconTheme(IconThemeData original) {
 
 ThemeData _buildShrineTheme() {
   final ThemeData base = ThemeData.light();
+
   return base.copyWith(
-    accentColor: kShrineBrown900,
-    primaryColor: kShrinePink100,
-    buttonColor: kShrinePink100,
-    scaffoldBackgroundColor: kShrineBackgroundWhite,
-    cardColor: kShrineBackgroundWhite,
-    textSelectionColor: kShrinePink100,
-    errorColor: kShrineErrorRed,
-    buttonTheme: ButtonThemeData(
-      textTheme: ButtonTextTheme.accent,
-    ),
-    primaryIconTheme: base.iconTheme.copyWith(color: kShrineBrown900),
-    inputDecorationTheme: InputDecorationTheme(
-      border: NotchedCornerBorder(),
-    ),
-    textTheme: _buildShrineTextTheme(base.textTheme),
-    primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
-    accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
-    iconTheme: _customIconTheme(base.iconTheme),
-  );
+//    accentColor: kShrineBrown900,
+//    primaryColor: kShrinePink100,
+//    buttonColor: Colors.red,
+//    scaffoldBackgroundColor: kShrineBackgroundWhite,
+//    cardColor: kShrineBackgroundWhite,
+//    textSelectionColor: kShrinePink100,
+//    errorColor: kShrineErrorRed,
+//    buttonTheme: ButtonThemeData(
+//      textTheme: ButtonTextTheme.accent,
+//    ),
+//    primaryIconTheme: base.iconTheme.copyWith(color: kShrineBrown900),
+// TODO text fields demo
+//    inputDecorationTheme: new InputDecorationTheme(
+//      border: new NotchedCornerBorder(),
+//    ),
+//    textTheme: _buildShrineTextTheme(base.textTheme),
+//    primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
+//    accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
+//    iconTheme: _customIconTheme(base.iconTheme),
+      );
 }
 
 TextTheme _buildShrineTextTheme(TextTheme base) {

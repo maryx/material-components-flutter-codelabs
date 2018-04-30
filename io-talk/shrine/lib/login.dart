@@ -17,9 +17,9 @@ class LoginPageState extends State<LoginPage> {
   Widget _buildLogo() {
     return Column(
       children: <Widget>[
-        Image.asset('assets/diamond.png'),
-        SizedBox(height: 16.0),
-        Text(
+        new Image.asset('assets/diamond.png'),
+        const SizedBox(height: 16.0),
+        new Text(
           'SHRINE',
           style: Theme.of(context).textTheme.headline,
         ),
@@ -95,13 +95,35 @@ class LoginPageState extends State<LoginPage> {
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            //SizedBox(height: 80.0),
+            SizedBox(height: 80.0),
             _buildLogo(),
-            //SizedBox(height: 120.0),
+            SizedBox(height: 120.0),
             _buildTextField('Username', _usernameController, false),
-            //SizedBox(height: 12.0),
+            SizedBox(height: 12.0),
             _buildTextField('Password', _passwordController, true),
             _buildButtonBar(),
+            FlatButton(
+              child: Text('CANCEL'),
+              // TODO demo 2
+              //shape: BeveledRectangleBorder(
+              //  borderRadius: BorderRadius.all(Radius.circular(7.0)),
+              //),
+              onPressed: () {
+                _usernameController.clear();
+                _passwordController.clear();
+              },
+            ),
+            RaisedButton(
+              child: Text('NEXT'),
+              elevation: 8.0,
+              // TODO demo 2
+              //shape: BeveledRectangleBorder(
+              //  borderRadius: BorderRadius.all(Radius.circular(7.0)),
+              //),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
           ],
         ),
       ),

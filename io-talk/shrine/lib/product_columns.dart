@@ -19,7 +19,9 @@ class TwoProductCardColumn extends StatelessWidget {
 
       double heightOfCards = (constraints.biggest.height - spacerHeight) / 2.0;
       double heightOfImages = heightOfCards - ProductCard.kTextBoxHeight;
-      double imageAspectRatio = constraints.biggest.width / heightOfImages;
+      double imageAspectRatio = constraints.biggest.width > heightOfImages
+          ? constraints.biggest.width / heightOfImages
+          : 33 / 49;
 
       return new Column(
         mainAxisAlignment: MainAxisAlignment.center,

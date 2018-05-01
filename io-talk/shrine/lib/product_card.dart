@@ -24,15 +24,15 @@ class ProductCard extends StatelessWidget {
       fit: BoxFit.cover,
     );
 
-    return new Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        new AspectRatio(
+        AspectRatio(
           aspectRatio: imageAspectRatio,
           child: imageWidget,
         ),
-        new SizedBox(
+        SizedBox(
           height: kTextBoxHeight * MediaQuery.of(context).textScaleFactor,
           width: 121.0,
           child: new Column(

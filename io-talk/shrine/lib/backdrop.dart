@@ -7,8 +7,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-import 'package:shrine/supplemental/theming.dart';
 import 'package:shrine/model/product.dart';
+import 'login.dart';
 
 const double _kFlingVelocity = 2.0;
 
@@ -18,23 +18,21 @@ class _BackdropPanel extends StatelessWidget {
     this.onTap,
     this.onVerticalDragUpdate,
     this.onVerticalDragEnd,
-    this.title,
     this.child,
   }) : super(key: key);
 
   final VoidCallback onTap;
   final GestureDragUpdateCallback onVerticalDragUpdate;
   final GestureDragEndCallback onVerticalDragEnd;
-  final Widget title;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 2.0,
+      elevation: 8.0,
+      // TODO use notched
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(16.0),
-        topRight: Radius.circular(16.0),
+        topLeft: Radius.circular(64.0),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -45,17 +43,9 @@ class _BackdropPanel extends StatelessWidget {
             onVerticalDragEnd: onVerticalDragEnd,
             onTap: onTap,
             child: Container(
-              height: 48.0,
-              padding: EdgeInsetsDirectional.only(start: 16.0),
+              height: 40.0,
               alignment: AlignmentDirectional.centerStart,
-              child: DefaultTextStyle(
-                style: Theme.of(context).textTheme.subhead,
-                child: title,
-              ),
             ),
-          ),
-          Divider(
-            height: 1.0,
           ),
           Expanded(
             child: child,
@@ -232,7 +222,6 @@ class _BackdropState extends State<Backdrop>
 
     return Container(
       key: _backdropKey,
-      color: kShrinePink50,
       child: Stack(
         children: <Widget>[
           widget.backPanel,
@@ -242,7 +231,6 @@ class _BackdropState extends State<Backdrop>
               onTap: _toggleBackdropPanelVisibility,
               onVerticalDragUpdate: _handleDragUpdate,
               onVerticalDragEnd: _handleDragEnd,
-              title: Text('Shrine'),
               child: widget.frontPanel,
             ),
           ),
@@ -253,23 +241,43 @@ class _BackdropState extends State<Backdrop>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-        elevation: 0.0,
-        leading: IconButton(
-          onPressed: _toggleBackdropPanelVisibility,
-          icon: AnimatedIcon(
-            icon: AnimatedIcons.close_menu,
-            progress: _controller.view,
-          ),
-        ),
-        title: _BackdropTitle(
-          listenable: _controller.view,
-          frontTitle: widget.frontTitle,
-          backTitle: widget.backTitle,
+    var appBar = AppBar(
+      brightness: Brightness.light,
+      elevation: 0.0,
+      leading: IconButton(
+        onPressed: _toggleBackdropPanelVisibility,
+        icon: AnimatedIcon(
+          icon: AnimatedIcons.close_menu,
+          progress: _controller.view,
         ),
       ),
+      title: _BackdropTitle(
+        listenable: _controller.view,
+        frontTitle: widget.frontTitle,
+        backTitle: widget.backTitle,
+      ),
+      actions: <Widget>[
+        new IconButton(
+          icon: const Icon(Icons.search),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
+            );
+          },
+        ),
+        new IconButton(
+          icon: const Icon(Icons.tune),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
+            );          },
+        ),
+      ],
+    );
+    return Scaffold(
+      appBar: appBar,
       body: LayoutBuilder(
         builder: _buildStack,
       ),

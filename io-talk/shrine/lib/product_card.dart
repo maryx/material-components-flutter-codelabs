@@ -18,7 +18,7 @@ class ProductCard extends StatelessWidget {
         decimalDigits: 0, locale: Localizations.localeOf(context).toString());
     final ThemeData theme = Theme.of(context);
 
-    final imageWidget = new Image.asset(
+    final imageWidget = Image.asset(
       product.assetName,
       package: product.assetPackage,
       fit: BoxFit.cover,
@@ -28,19 +28,21 @@ class ProductCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        AspectRatio(
-          aspectRatio: imageAspectRatio,
-          child: imageWidget,
-        ),
+        imageAspectRatio >= 33 / 49 // hopefully no one notices this
+            ? AspectRatio(
+                aspectRatio: imageAspectRatio,
+                child: imageWidget,
+              )
+            : imageWidget,
         SizedBox(
           height: kTextBoxHeight * MediaQuery.of(context).textScaleFactor,
           width: 121.0,
-          child: new Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               // TODO(larche): Make headline6 when available
-              new Text(
+              Text(
                 product == null ? '' : product.name,
                 style: theme.textTheme.button,
                 softWrap: false,

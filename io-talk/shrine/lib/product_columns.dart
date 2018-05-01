@@ -13,35 +13,34 @@ class TwoProductCardColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new LayoutBuilder(
+    return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       const spacerHeight = 44.0;
 
       double heightOfCards = (constraints.biggest.height - spacerHeight) / 2.0;
       double heightOfImages = heightOfCards - ProductCard.kTextBoxHeight;
-      double imageAspectRatio = constraints.biggest.width > heightOfImages
-          ? constraints.biggest.width / heightOfImages
-          : 33 / 49;
+      double imageAspectRatio =
+          (heightOfImages >= 0.0 && constraints.biggest.width > heightOfImages)
+              ? constraints.biggest.width / heightOfImages
+              : 33 / 49;
 
-      return new Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      return ListView(
         children: <Widget>[
-          new Container(
-            padding: const EdgeInsetsDirectional.only(start: 28.0),
+          Container(
+            padding: EdgeInsetsDirectional.only(start: 28.0),
             child: top != null
-                ? new ProductCard(
+                ? ProductCard(
                     imageAspectRatio: imageAspectRatio,
                     product: top,
                   )
-                : new SizedBox(
+                : SizedBox(
                     height: heightOfCards,
                   ),
           ),
-          const SizedBox(height: spacerHeight),
-          new Container(
-            padding: const EdgeInsetsDirectional.only(end: 28.0),
-            child: new ProductCard(
+          SizedBox(height: spacerHeight),
+          Container(
+            padding: EdgeInsetsDirectional.only(end: 28.0),
+            child: ProductCard(
               imageAspectRatio: imageAspectRatio,
               product: bottom,
             ),
@@ -59,13 +58,13 @@ class OneProductCardColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Column(
-      mainAxisAlignment: MainAxisAlignment.end,
+    return ListView(
       children: <Widget>[
-        new ProductCard(
+        SizedBox(height: 64.0),
+        ProductCard(
           product: product,
         ),
-        const SizedBox(
+        SizedBox(
           height: 40.0,
         ),
       ],

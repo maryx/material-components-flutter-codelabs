@@ -15,6 +15,8 @@ class ShrineApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shrine',
+      // home: HomePage(),
+// TODO WILL add backdrop
       home: Backdrop(
         currentCategory: null,
         frontPanel: HomePage(),
@@ -50,6 +52,7 @@ ThemeData _buildShrineTheme() {
   return base.copyWith(
     accentColor: kShrineBrown900,
     primaryColor: kShrinePink100,
+    // TODO add this one1
     buttonColor: kShrinePink100,
     scaffoldBackgroundColor: kShrineBackgroundWhite,
     cardColor: kShrineBackgroundWhite,
@@ -59,12 +62,15 @@ ThemeData _buildShrineTheme() {
       textTheme: ButtonTextTheme.accent,
     ),
     primaryIconTheme: base.iconTheme.copyWith(color: kShrineBrown900),
-    // TODO text fields demo
+    // TODO text fields demo2
+    // TODO WILL Text Fields Demo
     inputDecorationTheme: InputDecorationTheme(
       border: NotchedCornerBorder(),
     ),
+    // TODO text fields 3
     textTheme: _buildShrineTextTheme(base.textTheme),
     primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
+    // TODO does a thing4
     accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
   );
 }
@@ -72,6 +78,7 @@ ThemeData _buildShrineTheme() {
 TextTheme _buildShrineTextTheme(TextTheme base) {
   return base
       .copyWith(
+        // TODO titles and headlines6
         headline: base.headline.copyWith(
           fontWeight: FontWeight.w500,
         ),
@@ -81,6 +88,7 @@ TextTheme _buildShrineTextTheme(TextTheme base) {
           fontSize: 14.0,
         ),
       )
+      // TODO add font5
       .apply(
         fontFamily: 'Rubik',
         displayColor: kShrineBrown900,

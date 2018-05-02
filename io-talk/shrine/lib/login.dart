@@ -41,18 +41,14 @@ class LoginPageState extends State<LoginPage> {
   // TODO Demo 1 result
   Widget _buildTextField(
       String label, TextEditingController controller, bool obscureText) {
-    return Container(
-      width: 200.0,
-      child: Theme(
-        data: Theme.of(context).copyWith(primaryColor: kShrineBrown900),
-        child: TextField(
-          controller: controller,
-          decoration: InputDecoration(
-            labelText: label,
-            border: NotchedCornerBorder(),
-          ),
-          obscureText: obscureText,
+    return Theme(
+      data: Theme.of(context).copyWith(primaryColor: kShrineBrown900),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: label,
         ),
+        obscureText: obscureText,
       ),
     );
   }
@@ -107,4 +103,3 @@ class LoginPageState extends State<LoginPage> {
     );
   }
 }
-

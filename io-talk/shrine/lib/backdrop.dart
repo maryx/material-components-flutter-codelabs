@@ -214,6 +214,7 @@ class _BackdropState extends State<Backdrop>
     final Size panelSize = constraints.biggest;
     final double panelTop = panelSize.height - panelTitleHeight;
 
+    // TODO Will code this
     Animation<RelativeRect> panelAnimation = RelativeRectTween(
       begin: RelativeRect.fromLTRB(
           0.0, panelTop, 0.0, panelTop - panelSize.height),

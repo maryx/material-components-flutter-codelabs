@@ -29,7 +29,7 @@ class ShrineApp extends StatelessWidget {
       ),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
-      theme: _buildShrineTheme(),
+      theme: _buildLightTheme(),
     );
   }
 
@@ -46,7 +46,7 @@ class ShrineApp extends StatelessWidget {
   }
 }
 
-ThemeData _buildShrineTheme() {
+ThemeData _buildLightTheme() {
   final ThemeData base = ThemeData.light();
 
   return base.copyWith(
@@ -73,6 +73,35 @@ ThemeData _buildShrineTheme() {
     // TODO does a thing4
     accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
   );
+}
+
+ThemeData _buildAltTheme() {
+  final ThemeData base = ThemeData.dark();
+return base;
+//  return base.copyWith(
+//    accentColor: kShrineBrown900,
+//    primaryColor: kShrinePink100,
+//    // TODO add this one1
+//    buttonColor: kShrinePink100,
+//    scaffoldBackgroundColor: kShrineBackgroundWhite,
+//    cardColor: kShrineBackgroundWhite,
+//    textSelectionColor: kShrinePink100,
+//    errorColor: kShrineErrorRed,
+//    buttonTheme: ButtonThemeData(
+//      textTheme: ButtonTextTheme.accent,
+//    ),
+//    primaryIconTheme: base.iconTheme.copyWith(color: kShrineBrown900),
+//    // TODO text fields demo2
+//    // TODO WILL Text Fields Demo
+//    inputDecorationTheme: InputDecorationTheme(
+//      border: NotchedCornerBorder(),
+//    ),
+//    // TODO text fields 3
+//    textTheme: _buildShrineTextTheme(base.textTheme),
+//    primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
+//    // TODO does a thing4
+//    accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
+//  );
 }
 
 TextTheme _buildShrineTextTheme(TextTheme base) {

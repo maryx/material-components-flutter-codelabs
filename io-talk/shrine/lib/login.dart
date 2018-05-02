@@ -14,7 +14,7 @@ class LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  Widget _buildLogo() {
+  Column _buildLogo() {
     return Column(
       children: <Widget>[
         Image.asset('assets/diamond.png'),

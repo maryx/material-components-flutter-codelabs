@@ -12,6 +12,16 @@ class ProductCard extends StatelessWidget {
 
   static final kTextBoxHeight = 65.0;
 
+  // TODO WILL make negative to demonstrate error
+  Widget _buildImage(Widget image, bool resize) {
+    return resize
+        ? AspectRatio(
+            aspectRatio: imageAspectRatio,
+            child: image,
+          )
+        : image;
+  }
+
   @override
   Widget build(BuildContext context) {
     final NumberFormat formatter = new NumberFormat.simpleCurrency(
@@ -28,12 +38,7 @@ class ProductCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        imageAspectRatio >= 33 / 49 // hopefully no one notices this
-            ? AspectRatio(
-                aspectRatio: imageAspectRatio,
-                child: imageWidget,
-              )
-            : imageWidget,
+        _buildImage(imageWidget, imageAspectRatio >= 33 / 49),
         SizedBox(
           height: kTextBoxHeight * MediaQuery.of(context).textScaleFactor,
           width: 121.0,

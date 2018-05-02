@@ -15,8 +15,8 @@ class ShrineApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shrine',
-      // home: HomePage(),
-// TODO WILL add backdrop
+       //home: HomePage(),
+      // TODO WILL add backdrop
       home: Backdrop(
         currentCategory: null,
         frontPanel: HomePage(),

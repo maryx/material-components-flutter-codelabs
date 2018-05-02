@@ -29,10 +29,9 @@ class _BackdropPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 8.0,
-      // TODO use notched
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(64.0),
+      elevation: 16.0,
+      shape: BeveledRectangleBorder(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(64.0)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -130,14 +129,13 @@ class Backdrop extends StatefulWidget {
 class _BackdropState extends State<Backdrop>
     with SingleTickerProviderStateMixin {
   final GlobalKey _backdropKey = GlobalKey(debugLabel: 'Backdrop');
+  // TODO will code this 1
   AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    // This creates an [AnimationController] that can allows for animation for
-    // the BackdropPanel. 0.00 means that the front panel is in "tab" (hidden)
-    // mode, while 1.0 means that the front panel is open.
+// TODO will code this 2
     _controller = AnimationController(
       duration: Duration(milliseconds: 300),
       value: 1.0,
@@ -183,9 +181,7 @@ class _BackdropState extends State<Backdrop>
     return renderBox.size.height;
   }
 
-  // By design: the panel can only be opened with a swipe. To close the panel
-  // the user must either tap its heading or the backdrop's menu icon.
-
+// TODO will code this 6
   void _handleDragUpdate(DragUpdateDetails details) {
     if (_controller.isAnimating ||
         _controller.status == AnimationStatus.completed) return;
@@ -214,7 +210,7 @@ class _BackdropState extends State<Backdrop>
     final Size panelSize = constraints.biggest;
     final double panelTop = panelSize.height - panelTitleHeight;
 
-    // TODO Will code this
+    // TODO Will code this 3
     Animation<RelativeRect> panelAnimation = RelativeRectTween(
       begin: RelativeRect.fromLTRB(
           0.0, panelTop, 0.0, panelTop - panelSize.height),
@@ -227,9 +223,11 @@ class _BackdropState extends State<Backdrop>
         children: <Widget>[
           widget.backPanel,
           PositionedTransition(
+            // TODO will code this 4
             rect: panelAnimation,
             child: _BackdropPanel(
               onTap: _toggleBackdropPanelVisibility,
+              // TODO will code this 5
               onVerticalDragUpdate: _handleDragUpdate,
               onVerticalDragEnd: _handleDragEnd,
               child: widget.frontPanel,

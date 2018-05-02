@@ -30,27 +30,12 @@ class LoginPageState extends State<LoginPage> {
   }
 
   // TODO Demo 1 start
-//  Widget _buildTextField(
-//      String label, TextEditingController controller, bool obscureText) {
-//    return new TextField(
-//      controller: controller,
-//      decoration: new InputDecoration(
-//        labelText: label,
-//      ),
-//    );
-//  }
-
-  // TODO Demo 1 result
   Widget _buildTextField(
       String label, TextEditingController controller, bool obscureText) {
-    return Theme(
-      data: Theme.of(context).copyWith(primaryColor: kShrineBrown900),
-      child: TextField(
-        controller: controller,
-        decoration: InputDecoration(
-          labelText: label,
-        ),
-        obscureText: obscureText,
+    return new TextField(
+      controller: controller,
+      decoration: new InputDecoration(
+        labelText: label,
       ),
     );
   }
@@ -61,9 +46,6 @@ class LoginPageState extends State<LoginPage> {
         FlatButton(
           child: Text('CANCEL'),
           // TODO demo 2
-          shape: BeveledRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(7.0)),
-          ),
           onPressed: () {
             _usernameController.clear();
             _passwordController.clear();
@@ -73,9 +55,6 @@ class LoginPageState extends State<LoginPage> {
           child: Text('NEXT'),
           elevation: 8.0,
           // TODO demo 2
-          shape: BeveledRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(7.0)),
-          ),
           onPressed: () {
             Navigator.pop(context);
           },

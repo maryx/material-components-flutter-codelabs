@@ -129,18 +129,18 @@ class Backdrop extends StatefulWidget {
 class _BackdropState extends State<Backdrop>
     with SingleTickerProviderStateMixin {
   final GlobalKey _backdropKey = GlobalKey(debugLabel: 'Backdrop');
-  // TODO will code this 1
+  // TODO will show this
   AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
 // TODO will code this 2
-    _controller = AnimationController(
-      duration: Duration(milliseconds: 300),
-      value: 1.0,
-      vsync: this,
-    );
+//    _controller = AnimationController(
+//      duration: Duration(milliseconds: 300),
+//      value: 1.0,
+//      vsync: this,
+//    );
   }
 
   @override
@@ -183,10 +183,10 @@ class _BackdropState extends State<Backdrop>
 
 // TODO will code this 6
   void _handleDragUpdate(DragUpdateDetails details) {
-    if (_controller.isAnimating ||
-        _controller.status == AnimationStatus.completed) return;
-
-    _controller.value -= details.primaryDelta / _backdropHeight;
+//    if (_controller.isAnimating ||
+//        _controller.status == AnimationStatus.completed) return;
+//
+//    _controller.value -= details.primaryDelta / _backdropHeight;
   }
 
   void _handleDragEnd(DragEndDetails details) {
@@ -211,11 +211,11 @@ class _BackdropState extends State<Backdrop>
     final double panelTop = panelSize.height - panelTitleHeight;
 
     // TODO Will code this 3
-    Animation<RelativeRect> panelAnimation = RelativeRectTween(
-      begin: RelativeRect.fromLTRB(
-          0.0, panelTop, 0.0, panelTop - panelSize.height),
-      end: RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
-    ).animate(_controller.view);
+//    Animation<RelativeRect> panelAnimation = RelativeRectTween(
+//      begin: RelativeRect.fromLTRB(
+//          0.0, panelTop, 0.0, panelTop - panelSize.height),
+//      end: RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
+//    ).animate(_controller.view);
 
     return Container(
       key: _backdropKey,
@@ -224,11 +224,11 @@ class _BackdropState extends State<Backdrop>
           widget.backPanel,
           PositionedTransition(
             // TODO will code this 4
-            rect: panelAnimation,
+            //rect: panelAnimation,
             child: _BackdropPanel(
               onTap: _toggleBackdropPanelVisibility,
               // TODO will code this 5
-              onVerticalDragUpdate: _handleDragUpdate,
+              //onVerticalDragUpdate: _handleDragUpdate,
               onVerticalDragEnd: _handleDragEnd,
               child: widget.frontPanel,
             ),
@@ -271,7 +271,8 @@ class _BackdropState extends State<Backdrop>
             Navigator.push(
               context,
               MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
-            );          },
+            );
+          },
         ),
       ],
     );

@@ -15,20 +15,11 @@ class ShrineApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shrine',
-       //home: HomePage(),
+      home: HomePage(),
       // TODO WILL add backdrop
-      home: Backdrop(
-        currentCategory: null,
-        frontPanel: HomePage(),
-        // TODO make back panel
-        backPanel: Container(
-          color: kShrinePink100,
-        ),
-        frontTitle: Text('SHRINE'),
-        backTitle: Text('MENU'),
-      ),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
+      // TODO MARY Theme
       theme: _buildLightTheme(),
     );
   }
@@ -51,9 +42,6 @@ ThemeData _buildLightTheme() {
 
   return base.copyWith(
     accentColor: kShrineBrown900,
-    primaryColor: kShrinePink100,
-    // TODO add this one1
-    buttonColor: kShrinePink100,
     scaffoldBackgroundColor: kShrineBackgroundWhite,
     cardColor: kShrineBackgroundWhite,
     textSelectionColor: kShrinePink100,
@@ -61,23 +49,37 @@ ThemeData _buildLightTheme() {
     buttonTheme: ButtonThemeData(
       textTheme: ButtonTextTheme.accent,
     ),
-    primaryIconTheme: base.iconTheme.copyWith(color: kShrineBrown900),
-    // TODO text fields demo2
-    // TODO WILL Text Fields Demo
-    inputDecorationTheme: InputDecorationTheme(
-      border: NotchedCornerBorder(),
-    ),
-    // TODO text fields 3
     textTheme: _buildShrineTextTheme(base.textTheme),
     primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
-    // TODO does a thing4
     accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
+
+    // TODO login page buttonColor
+    // TODO add primaryColor, pink 100, primaryIconTheme base.iconTheme.copyWith(color: kShrineBrown900
+
+    // TODO WILL Text Fields Demo add InputDecoration
+    // with NotchedCornerBorder.
   );
+}
+
+TextTheme _buildShrineTextTheme(TextTheme base) {
+  // TODO MARY font colors, font
+  return base
+      .copyWith(
+        // TODO headline on LoginPage base.copyWith w500
+        title: base.title.copyWith(fontSize: 18.0),
+        caption: base.caption.copyWith(
+          fontWeight: FontWeight.w400,
+          fontSize: 14.0,
+        ),
+      )
+      .apply(
+        displayColor: kShrineBrown900,
+      );
 }
 
 ThemeData _buildAltTheme() {
   final ThemeData base = ThemeData.dark();
-return base;
+  return base;
 //  return base.copyWith(
 //    accentColor: kShrineBrown900,
 //    primaryColor: kShrinePink100,
@@ -102,25 +104,4 @@ return base;
 //    // TODO does a thing4
 //    accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
 //  );
-}
-
-TextTheme _buildShrineTextTheme(TextTheme base) {
-  return base
-      .copyWith(
-        // TODO titles and headlines6
-        headline: base.headline.copyWith(
-          fontWeight: FontWeight.w500,
-        ),
-        title: base.title.copyWith(fontSize: 18.0),
-        caption: base.caption.copyWith(
-          fontWeight: FontWeight.w400,
-          fontSize: 14.0,
-        ),
-      )
-      // TODO add font5
-      .apply(
-        fontFamily: 'Rubik',
-        displayColor: kShrineBrown900,
-        bodyColor: kShrineBrown900,
-      );
 }

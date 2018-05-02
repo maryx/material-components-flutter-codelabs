@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import '../model/data.dart';
 import '../model/product.dart';
 
-List<Card> _buildGridCards(BuildContext context) {
+List<Card> buildGridCards(BuildContext context) {
   List<Product> products = getAllProducts();
 
   if (products == null || products.isEmpty) {

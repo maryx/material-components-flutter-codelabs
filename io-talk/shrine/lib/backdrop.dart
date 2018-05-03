@@ -2,8 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
@@ -16,14 +14,10 @@ class _BackdropPanel extends StatelessWidget {
   const _BackdropPanel({
     Key key,
     this.onTap,
-    this.onVerticalDragUpdate,
-    this.onVerticalDragEnd,
     this.child,
   }) : super(key: key);
 
   final VoidCallback onTap;
-  final GestureDragUpdateCallback onVerticalDragUpdate;
-  final GestureDragEndCallback onVerticalDragEnd;
   final Widget child;
 
   @override
@@ -38,8 +32,6 @@ class _BackdropPanel extends StatelessWidget {
         children: <Widget>[
           GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onVerticalDragUpdate: onVerticalDragUpdate,
-            onVerticalDragEnd: onVerticalDragEnd,
             onTap: onTap,
             child: Container(
               height: 40.0,
@@ -176,35 +168,6 @@ class _BackdropState extends State<Backdrop>
         velocity: _backdropPanelVisible ? -_kFlingVelocity : _kFlingVelocity);
   }
 
-  double get _backdropHeight {
-    final RenderBox renderBox = _backdropKey.currentContext.findRenderObject();
-    return renderBox.size.height;
-  }
-
-// TODO will code this 6
-  void _handleDragUpdate(DragUpdateDetails details) {
-    if (_controller.isAnimating ||
-        _controller.status == AnimationStatus.completed) return;
-
-    _controller.value -= details.primaryDelta / _backdropHeight;
-  }
-
-  void _handleDragEnd(DragEndDetails details) {
-    if (_controller.isAnimating ||
-        _controller.status == AnimationStatus.completed) return;
-
-    final double flingVelocity =
-        details.velocity.pixelsPerSecond.dy / _backdropHeight;
-    if (flingVelocity < 0.0)
-      _controller.fling(velocity: math.max(_kFlingVelocity, -flingVelocity));
-    else if (flingVelocity > 0.0)
-      _controller.fling(velocity: math.min(-_kFlingVelocity, -flingVelocity));
-    else
-      _controller.fling(
-          velocity:
-              _controller.value < 0.5 ? -_kFlingVelocity : _kFlingVelocity);
-  }
-
   Widget _buildStack(BuildContext context, BoxConstraints constraints) {
     const double panelTitleHeight = 48.0;
     final Size panelSize = constraints.biggest;
@@ -222,14 +185,11 @@ class _BackdropState extends State<Backdrop>
       child: Stack(
         children: <Widget>[
           widget.backPanel,
+          // TODO will code this 4
           PositionedTransition(
-            // TODO will code this 4
             rect: panelAnimation,
             child: _BackdropPanel(
               onTap: _toggleBackdropPanelVisibility,
-              // TODO will code this 5
-              onVerticalDragUpdate: _handleDragUpdate,
-              onVerticalDragEnd: _handleDragEnd,
               child: widget.frontPanel,
             ),
           ),

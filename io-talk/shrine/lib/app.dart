@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'backdrop.dart';
+import 'colors.dart';
 import 'home.dart';
 import 'login.dart';
-import 'notched_corner_border.dart';
-import 'supplemental/theming.dart';
+import 'supplemental/notched_corner_border.dart';
 
 class ShrineApp extends StatelessWidget {
   @override
@@ -15,21 +15,19 @@ class ShrineApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shrine',
-       //home: HomePage(),
+      //home: HomePage(),
       // TODO WILL add backdrop
       home: Backdrop(
         currentCategory: null,
         frontPanel: HomePage(),
         // TODO make back panel
         backPanel: Container(
-          color: kShrinePink100,
+          color: pink100,
         ),
-        frontTitle: Text('SHRINE'),
-        backTitle: Text('MENU'),
       ),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
-      theme: _buildLightTheme(),
+      theme: _buildAltTheme(),
     );
   }
 
@@ -48,63 +46,27 @@ class ShrineApp extends StatelessWidget {
 
 ThemeData _buildLightTheme() {
   final ThemeData base = ThemeData.light();
-
   return base.copyWith(
-    accentColor: kShrineBrown900,
-    primaryColor: kShrinePink100,
-    // TODO add this one1
-    buttonColor: kShrinePink100,
-    scaffoldBackgroundColor: kShrineBackgroundWhite,
-    cardColor: kShrineBackgroundWhite,
-    textSelectionColor: kShrinePink100,
-    errorColor: kShrineErrorRed,
+    accentColor: brown900,
+    scaffoldBackgroundColor: white50,
+    cardColor: white50,
+    textSelectionColor: pink100,
+    errorColor: red700,
     buttonTheme: ButtonThemeData(
       textTheme: ButtonTextTheme.accent,
     ),
-    primaryIconTheme: base.iconTheme.copyWith(color: kShrineBrown900),
-    // TODO text fields demo2
-    // TODO WILL Text Fields Demo
-    inputDecorationTheme: InputDecorationTheme(
-      border: NotchedCornerBorder(),
-    ),
-    // TODO text fields 3
-    textTheme: _buildShrineTextTheme(base.textTheme),
-    primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
-    // TODO does a thing4
-    accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
+    textTheme: _buildTextTheme(base.textTheme, brown900),
+    primaryTextTheme: _buildTextTheme(base.primaryTextTheme, brown900),
+    accentTextTheme: _buildTextTheme(base.accentTextTheme, brown900),
+
+    // TODO login page buttonColor
+    // TODO add primaryColor, pink100, primaryIconTheme base.iconTheme.copyWith(color: kShrineBrown900
+
+    // TODO WILL Text Fields Demo add InputDecoration with NotchedCornerBorder.
   );
 }
 
-ThemeData _buildAltTheme() {
-  final ThemeData base = ThemeData.dark();
-return base;
-//  return base.copyWith(
-//    accentColor: kShrineBrown900,
-//    primaryColor: kShrinePink100,
-//    // TODO add this one1
-//    buttonColor: kShrinePink100,
-//    scaffoldBackgroundColor: kShrineBackgroundWhite,
-//    cardColor: kShrineBackgroundWhite,
-//    textSelectionColor: kShrinePink100,
-//    errorColor: kShrineErrorRed,
-//    buttonTheme: ButtonThemeData(
-//      textTheme: ButtonTextTheme.accent,
-//    ),
-//    primaryIconTheme: base.iconTheme.copyWith(color: kShrineBrown900),
-//    // TODO text fields demo2
-//    // TODO WILL Text Fields Demo
-//    inputDecorationTheme: InputDecorationTheme(
-//      border: NotchedCornerBorder(),
-//    ),
-//    // TODO text fields 3
-//    textTheme: _buildShrineTextTheme(base.textTheme),
-//    primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
-//    // TODO does a thing4
-//    accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
-//  );
-}
-
-TextTheme _buildShrineTextTheme(TextTheme base) {
+TextTheme _buildTextTheme(TextTheme base, Color color) {
   return base
       .copyWith(
         // TODO titles and headlines6
@@ -120,7 +82,26 @@ TextTheme _buildShrineTextTheme(TextTheme base) {
       // TODO add font5
       .apply(
         fontFamily: 'Rubik',
-        displayColor: kShrineBrown900,
-        bodyColor: kShrineBrown900,
+        displayColor: color,
+        bodyColor: color,
       );
+}
+
+ThemeData _buildAltTheme() {
+  final ThemeData base = ThemeData.dark();
+  return base.copyWith(
+    // TODO primary, button, accent, colors
+    primaryColor: green700,
+    accentColor: green100,
+    buttonColor: green700,
+    buttonTheme: ButtonThemeData(
+      textTheme: ButtonTextTheme.accent,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      border: NotchedCornerBorder(),
+    ),
+    textTheme: _buildTextTheme(base.textTheme, green100),
+    primaryTextTheme: _buildTextTheme(base.primaryTextTheme, green100),
+    accentTextTheme: _buildTextTheme(base.accentTextTheme, green100),
+  );
 }

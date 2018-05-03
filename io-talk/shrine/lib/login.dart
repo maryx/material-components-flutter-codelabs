@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'supplemental/theming.dart';
-import 'notched_corner_border.dart';
+import 'colors.dart';
+import 'supplemental/notched_corner_border.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -14,7 +14,7 @@ class LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  Column _buildLogo() {
+  Widget _buildLogo() {
     return Column(
       children: <Widget>[
         Image.asset('assets/diamond.png'),
@@ -23,35 +23,8 @@ class LoginPageState extends State<LoginPage> {
           'SHRINE',
           // TODO will update below
           style: Theme.of(context).textTheme.headline,
-          //style: Theme.of(context).textTheme.headline.copyWith(fontSize: 50.0),
         ),
       ],
-    );
-  }
-
-  // TODO Demo 1 start
-//  Widget _buildTextField(
-//      String label, TextEditingController controller, bool obscureText) {
-//    return new TextField(
-//      controller: controller,
-//      decoration: new InputDecoration(
-//        labelText: label,
-//      ),
-//    );
-//  }
-
-  // TODO Demo 1 result
-  Widget _buildTextField(
-      String label, TextEditingController controller, bool obscureText) {
-    return Theme(
-      data: Theme.of(context).copyWith(primaryColor: kShrineBrown900),
-      child: TextField(
-        controller: controller,
-        decoration: InputDecoration(
-          labelText: label,
-        ),
-        obscureText: obscureText,
-      ),
     );
   }
 
@@ -84,6 +57,32 @@ class LoginPageState extends State<LoginPage> {
     );
   }
 
+  // TODO Demo 1 start
+//  Widget _buildTextField(
+//      String label, TextEditingController controller, bool obscureText) {
+//    return new TextField(
+//      controller: controller,
+//      decoration: new InputDecoration(
+//        labelText: label,
+//      ),
+//    );
+//  }
+
+  // TODO Demo 1 result
+  Widget _buildTextField(
+      String label, TextEditingController controller, bool obscureText) {
+    return Theme(
+      data: Theme.of(context).copyWith(primaryColor: brown900),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: label,
+        ),
+        obscureText: obscureText,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO step 0: Start here
@@ -93,11 +92,7 @@ class LoginPageState extends State<LoginPage> {
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
             SizedBox(height: 80.0),
-            // TODO Will delete outer container
-            Container(
-              child: _buildLogo(),
-              height: 80.0,
-            ),
+            _buildLogo(),
             SizedBox(height: 120.0),
             _buildTextField('Username', _usernameController, false),
             SizedBox(height: 12.0),

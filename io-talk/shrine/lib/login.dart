@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
-import 'supplemental/notched_corner_border.dart';
+import 'supplemental/cut_corners_border.dart';
+
+const _borderRadius = BorderRadius.all(Radius.circular(7.0));
 
 class LoginPage extends StatefulWidget {
   @override
@@ -18,7 +20,7 @@ class LoginPageState extends State<LoginPage> {
     return Column(
       children: <Widget>[
         Image.asset('assets/diamond.png'),
-        const SizedBox(height: 16.0),
+        SizedBox(height: 16.0),
         Text(
           'SHRINE',
           style: Theme.of(context).textTheme.headline,
@@ -32,7 +34,6 @@ class LoginPageState extends State<LoginPage> {
       children: <Widget>[
         FlatButton(
           child: Text('CANCEL'),
-          // TODO add notch 2
           onPressed: () {
             _usernameController.clear();
             _passwordController.clear();
@@ -41,7 +42,9 @@ class LoginPageState extends State<LoginPage> {
         RaisedButton(
           child: Text('NEXT'),
           elevation: 8.0,
-          // TODO add notch 2
+          shape: BeveledRectangleBorder(
+            borderRadius: _borderRadius,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -50,26 +53,15 @@ class LoginPageState extends State<LoginPage> {
     );
   }
 
-  // TODO Demo 1 start
-//  Widget _buildTextField(
-//      String label, TextEditingController controller, bool obscureText) {
-//    return new TextField(
-//      controller: controller,
-//      decoration: new InputDecoration(
-//        labelText: label,
-//      ),
-//    );
-//  }
-
-  // TODO Demo 1 result
   Widget _buildTextField(
       String label, TextEditingController controller, bool obscureText) {
     return Theme(
-      data: Theme.of(context).copyWith(primaryColor: brown900),
+      data: Theme.of(context).copyWith(primaryColor: brown),
       child: TextField(
         controller: controller,
         decoration: InputDecoration(
           labelText: label,
+          border: CutCornersBorder(),
         ),
         obscureText: obscureText,
       ),
@@ -78,7 +70,6 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO step 0: Start here
     return Scaffold(
       body: SafeArea(
         child: ListView(

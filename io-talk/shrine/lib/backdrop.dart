@@ -99,8 +99,8 @@ class _BackdropState extends State<Backdrop>
         listenable: _controller.view,
       ),
       actions: <Widget>[
-        new IconButton(
-          icon: const Icon(Icons.search),
+        IconButton(
+          icon: Icon(Icons.search),
           onPressed: () {
             Navigator.push(
               context,
@@ -108,8 +108,8 @@ class _BackdropState extends State<Backdrop>
             );
           },
         ),
-        new IconButton(
-          icon: const Icon(Icons.tune),
+        IconButton(
+          icon: Icon(Icons.tune),
           onPressed: () {
             Navigator.push(
               context,

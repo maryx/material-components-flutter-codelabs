@@ -8,22 +8,12 @@ import 'supplemental/util.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO WILL remove app bar for backdrop
     return Scaffold(
-      // TODO MARY demo 2, use AsymmetricView, products.
       body: AsymmetricView(products: getAllProducts()),
-//      body: new Center(
-//        child: new GridView.count(
-//          crossAxisCount: 2,
-//          padding: const EdgeInsets.all(16.0),
-//          childAspectRatio: 8.0 / 9.0,
-//          children: buildGridCards(context),
-//        ),
-//      ),
       appBar: AppBar(
         brightness: Brightness.light,
-        leading: new IconButton(
-          icon: const Icon(Icons.menu),
+        leading: IconButton(
+          icon: Icon(Icons.menu),
           onPressed: () {
             Navigator.push(
               context,
@@ -31,10 +21,10 @@ class HomePage extends StatelessWidget {
             );
           },
         ),
-        title: const Text('SHRINE'),
+        title: Text('SHRINE'),
         actions: <Widget>[
-          new IconButton(
-            icon: const Icon(Icons.search),
+          IconButton(
+            icon: Icon(Icons.search),
             onPressed: () {
               Navigator.push(
                 context,
@@ -43,8 +33,8 @@ class HomePage extends StatelessWidget {
               );
             },
           ),
-          new IconButton(
-            icon: const Icon(Icons.tune),
+          IconButton(
+            icon: Icon(Icons.tune),
             onPressed: () {
               Navigator.push(
                 context,

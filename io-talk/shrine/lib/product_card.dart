@@ -44,17 +44,15 @@ class ProductCard extends StatelessWidget {
   }
 
   Widget _buildText(BuildContext context) {
-    final NumberFormat formatter = new NumberFormat.simpleCurrency(
+    final NumberFormat formatter = NumberFormat.simpleCurrency(
         decimalDigits: 0, locale: Localizations.localeOf(context).toString());
     final ThemeData theme = Theme.of(context);
     return SizedBox(
       height: kTextBoxHeight * MediaQuery.of(context).textScaleFactor,
       width: 121.0,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          // TODO(larche): Make headline6 when available
           Text(
             product == null ? '' : product.name,
             style: theme.textTheme.button,
@@ -62,9 +60,8 @@ class ProductCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
-          const SizedBox(height: 4.0),
-          // TODO(larche): Make subtitle2 when available
-          new Text(
+          SizedBox(height: 4.0),
+          Text(
             product == null ? '' : formatter.format(product.price),
             style: theme.textTheme.caption,
           ),

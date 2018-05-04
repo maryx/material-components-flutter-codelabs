@@ -6,6 +6,7 @@ import 'colors.dart';
 import 'home.dart';
 import 'login.dart';
 import 'supplemental/cut_corners_border.dart';
+import 'supplemental/menu_page.dart';
 
 class ShrineApp extends StatelessWidget {
   @override
@@ -18,7 +19,6 @@ class ShrineApp extends StatelessWidget {
       home: HomePage(),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
-      theme: _buildLightTheme(),
     );
   }
 }
@@ -36,16 +36,15 @@ ThemeData _buildLightTheme() {
     ),
     textSelectionHandleColor: pink,
     accentTextTheme: _buildTextTheme(base.accentTextTheme, brown),
-    textTheme: _buildTextTheme(base.textTheme, brown),
-    primaryColor: pink,
-    primaryTextTheme: _buildTextTheme(base.primaryTextTheme, brown),
-    primaryIconTheme: base.iconTheme.copyWith(color: brown),
-    buttonColor: pink,
   );
 }
 
 TextTheme _buildTextTheme(TextTheme base, Color color) {
   return base
+      .apply(
+        displayColor: color,
+        bodyColor: color,
+      )
       .copyWith(
         headline: base.headline.copyWith(
           fontWeight: FontWeight.w500,
@@ -55,18 +54,12 @@ TextTheme _buildTextTheme(TextTheme base, Color color) {
           fontWeight: FontWeight.w400,
           fontSize: 14.0,
         ),
-      )
-      .apply(
-        fontFamily: 'Rubik',
-        displayColor: color,
-        bodyColor: color,
       );
 }
 
 ThemeData _buildAltTheme() {
   final ThemeData base = ThemeData.dark();
   return base.copyWith(
-    // TODO primary, button, accent, colors
     primaryColor: green100,
     accentColor: green200,
     buttonColor: green200,

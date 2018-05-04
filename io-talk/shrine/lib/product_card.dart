@@ -6,28 +6,6 @@ import 'model/product.dart';
 const _idealAspectRatio = 33 / 49;
 
 class ProductCard extends StatelessWidget {
-  final double imageAspectRatio;
-  final Product product;
-  static final kTextBoxHeight = 65.0;
-
-  ProductCard({
-    this.imageAspectRatio: _idealAspectRatio,
-    this.product,
-  }) : assert(imageAspectRatio == null || imageAspectRatio > 0);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        _buildImage(),
-        _buildText(context),
-      ],
-    );
-  }
-
-  // TODO WILL make negative to demonstrate error
   Widget _buildImage() {
     final image = Image.asset(
       product.assetName,
@@ -67,6 +45,27 @@ class ProductCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  final double imageAspectRatio;
+  final Product product;
+  static final kTextBoxHeight = 65.0;
+
+  ProductCard({
+    this.imageAspectRatio: _idealAspectRatio,
+    this.product,
+  }) : assert(imageAspectRatio == null || imageAspectRatio > 0);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        _buildImage(),
+        _buildText(context),
+      ],
     );
   }
 }

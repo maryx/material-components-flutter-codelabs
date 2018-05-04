@@ -23,31 +23,21 @@ class _BackdropState extends State<Backdrop>
     const double panelTitleHeight = 48.0;
     final Size panelSize = constraints.biggest;
     final double panelTop = panelSize.height - panelTitleHeight;
-
-    // TODO Will code this 2
-    Animation<RelativeRect> panelAnimation = RelativeRectTween(
-      begin: RelativeRect.fromLTRB(
-          0.0, panelTop, 0.0, panelTop - panelSize.height),
-      end: RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
-    ).animate(_controller.view);
+    RelativeRect panelHeight =
+        RelativeRect.fromLTRB(0.0, panelTop, 0.0, panelTop - panelSize.height);
+    final RelativeRect bottomOfScreen =
+        RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0);
 
     return Container(
-      key: _backdropKey,
       child: Stack(
         children: <Widget>[
           widget.backPanel,
-          // TODO will code this 1
-          PositionedTransition(
-            rect: panelAnimation,
-            child: _BackdropPanel(
-              child: widget.frontPanel,
-              onTap: () {
-                _controller.fling(velocity: _backdropPanelVisible ? -2.0 : 2.0);
-              },
-            ),
+          _BackdropPanel(
+            child: widget.frontPanel,
           ),
         ],
       ),
+      key: _backdropKey,
     );
   }
 
@@ -197,8 +187,6 @@ class _BackdropTitle extends AnimatedWidget {
       style: Theme.of(context).primaryTextTheme.title,
       softWrap: false,
       overflow: TextOverflow.ellipsis,
-      // Here, we do a custom cross fade between backTitle and frontTitle.
-      // This makes a smooth animation between the two texts.
       child: Stack(
         children: <Widget>[
           Opacity(
@@ -220,3 +208,4 @@ class _BackdropTitle extends AnimatedWidget {
     );
   }
 }
+

@@ -9,7 +9,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AsymmetricView(products: getAllProducts()),
+      body: GridView.count(
+        crossAxisCount: 2,
+        padding: const EdgeInsets.all(16.0),
+        childAspectRatio: 8.0 / 9.0,
+        children: buildGridCards(context),
+      ),
       appBar: AppBar(
         brightness: Brightness.light,
         leading: IconButton(

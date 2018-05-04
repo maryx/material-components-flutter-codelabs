@@ -42,9 +42,6 @@ class LoginPageState extends State<LoginPage> {
         RaisedButton(
           child: Text('NEXT'),
           elevation: 8.0,
-          shape: BeveledRectangleBorder(
-            borderRadius: _borderRadius,
-          ),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -55,15 +52,10 @@ class LoginPageState extends State<LoginPage> {
 
   Widget _buildTextField(
       String label, TextEditingController controller, bool obscureText) {
-    return Theme(
-      data: Theme.of(context).copyWith(primaryColor: brown),
-      child: TextField(
-        controller: controller,
-        decoration: InputDecoration(
-          labelText: label,
-          border: CutCornersBorder(),
-        ),
-        obscureText: obscureText,
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: label,
       ),
     );
   }

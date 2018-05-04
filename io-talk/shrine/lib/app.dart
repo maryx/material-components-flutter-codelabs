@@ -45,6 +45,7 @@ ThemeData _buildLightTheme() {
     buttonTheme: ButtonThemeData(
       textTheme: ButtonTextTheme.accent,
     ),
+    textSelectionHandleColor: pink100,
     textTheme: _buildTextTheme(base.textTheme, brown900),
     primaryTextTheme: _buildTextTheme(base.primaryTextTheme, brown900),
     accentTextTheme: _buildTextTheme(base.accentTextTheme, brown900),

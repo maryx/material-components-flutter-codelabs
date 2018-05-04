@@ -11,14 +11,15 @@ class HomePage extends StatelessWidget {
     // TODO WILL remove app bar for backdrop
     return Scaffold(
       // TODO MARY demo 2, use AsymmetricView, products.
-      body: new Center(
-        child: new GridView.count(
-          crossAxisCount: 2,
-          padding: const EdgeInsets.all(16.0),
-          childAspectRatio: 8.0 / 9.0,
-          children: buildGridCards(context),
-        ),
-      ),
+      body: AsymmetricView(products: getAllProducts()),
+//      body: new Center(
+//        child: new GridView.count(
+//          crossAxisCount: 2,
+//          padding: const EdgeInsets.all(16.0),
+//          childAspectRatio: 8.0 / 9.0,
+//          children: buildGridCards(context),
+//        ),
+//      ),
       appBar: AppBar(
         brightness: Brightness.light,
         leading: new IconButton(

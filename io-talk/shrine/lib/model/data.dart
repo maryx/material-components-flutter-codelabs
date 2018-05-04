@@ -207,13 +207,6 @@ List<Product> getAllProducts() {
     ),
     Product(
       category: Category.clothing,
-      id: 29,
-      isFeatured: true,
-      name: 'Ginger scarf',
-      price: 98,
-    ),
-    Product(
-      category: Category.clothing,
       id: 30,
       isFeatured: true,
       name: 'Ramona crossover',
@@ -253,6 +246,13 @@ List<Product> getAllProducts() {
       isFeatured: false,
       name: 'Grey slouch tank',
       price: 24,
+    ),
+    Product(
+      category: Category.clothing,
+      id: 29,
+      isFeatured: true,
+      name: 'Ginger scarf',
+      price: 98,
     ),
     Product(
       category: Category.clothing,

@@ -19,6 +19,7 @@ class ShrineApp extends StatelessWidget {
       home: HomePage(),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
+      theme: _buildLightTheme(),
     );
   }
 }
@@ -36,15 +37,12 @@ ThemeData _buildLightTheme() {
     ),
     textSelectionHandleColor: pink,
     accentTextTheme: _buildTextTheme(base.accentTextTheme, brown),
+    textTheme: _buildTextTheme(base.textTheme, brown),
   );
 }
 
 TextTheme _buildTextTheme(TextTheme base, Color color) {
   return base
-      .apply(
-        displayColor: color,
-        bodyColor: color,
-      )
       .copyWith(
         headline: base.headline.copyWith(
           fontWeight: FontWeight.w500,
@@ -54,6 +52,10 @@ TextTheme _buildTextTheme(TextTheme base, Color color) {
           fontWeight: FontWeight.w400,
           fontSize: 14.0,
         ),
+      )
+      .apply(
+        displayColor: color,
+        bodyColor: color,
       );
 }
 

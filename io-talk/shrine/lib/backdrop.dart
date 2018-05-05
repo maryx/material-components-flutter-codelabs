@@ -126,7 +126,7 @@ class Backdrop extends StatefulWidget {
   final Widget backPanel;
 
   const Backdrop({
-    @required this.currentCategory,
+    this.currentCategory,
     @required this.frontPanel,
     @required this.backPanel,
   })  : //assert(currentCategory != null),
@@ -208,4 +208,3 @@ class _BackdropTitle extends AnimatedWidget {
     );
   }
 }
-

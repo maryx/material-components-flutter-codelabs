@@ -27,17 +27,17 @@ class ShrineApp extends StatelessWidget {
 ThemeData _buildLightTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
-    accentColor: brown,
-    scaffoldBackgroundColor: white,
-    cardColor: white,
-    textSelectionColor: pink,
-    errorColor: red,
+    accentColor: kShrineBrown,
+    scaffoldBackgroundColor: Colors.white,
+    cardColor: Colors.white,
+    textSelectionColor: kShrinePink,
+    errorColor: Colors.red,
     buttonTheme: ButtonThemeData(
       textTheme: ButtonTextTheme.accent,
     ),
-    textSelectionHandleColor: pink,
-    accentTextTheme: _buildTextTheme(base.accentTextTheme, brown),
-    textTheme: _buildTextTheme(base.textTheme, brown),
+    textSelectionHandleColor: kShrinePink,
+    accentTextTheme: _buildTextTheme(base.accentTextTheme, kShrineBrown),
+    textTheme: _buildTextTheme(base.textTheme, kShrineBrown),
   );
 }
 
@@ -62,18 +62,18 @@ TextTheme _buildTextTheme(TextTheme base, Color color) {
 ThemeData _buildAltTheme() {
   final ThemeData base = ThemeData.dark();
   return base.copyWith(
-    primaryColor: green100,
-    accentColor: green200,
-    buttonColor: green200,
+    primaryColor: kShrineGreen100,
+    accentColor: kShrineGreen200,
+    buttonColor: kShrineGreen200,
     buttonTheme: ButtonThemeData(
       textTheme: ButtonTextTheme.accent,
     ),
     inputDecorationTheme: InputDecorationTheme(
       border: CutCornersBorder(),
     ),
-    textTheme: _buildTextTheme(base.textTheme, green100),
-    primaryTextTheme: _buildTextTheme(base.primaryTextTheme, green100),
-    accentTextTheme: _buildTextTheme(base.accentTextTheme, green100),
+    textTheme: _buildTextTheme(base.textTheme, kShrineGreen100),
+    primaryTextTheme: _buildTextTheme(base.primaryTextTheme, kShrineGreen100),
+    accentTextTheme: _buildTextTheme(base.accentTextTheme, kShrineGreen100),
   );
 }
 

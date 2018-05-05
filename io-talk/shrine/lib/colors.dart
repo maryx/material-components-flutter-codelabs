@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 // Light theme
-const pink = Color(0xFFFEDBD0);
-const brown = Color(0xFF442B2D);
-const white = Color(0xFFFFFFFF);
-const red = Color(0xFFC5032B);
+const kShrinePink = const Color(0xFFFEDBD0);
+const kShrineBrown = const Color(0xFF442B2D);
 
 // Alt theme
-const green100 = Color(0xFF96f7aa);
-const green200 = Color(0xFF07681b);
-const purple = Color(0xFFece0f9);
+const kShrineGreen100 = const Color(0xFF96f7aa);
+const kShrineGreen200 = const Color(0xFF07681b);
+const kShrinePurple = const Color(0xFFece0f9);

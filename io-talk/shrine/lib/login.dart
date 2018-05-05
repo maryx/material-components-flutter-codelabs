@@ -51,7 +51,7 @@ class LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildTextField(
-      String label, TextEditingController controller, bool obscureText) {
+      String label, TextEditingController controller, bool isPassword) {
     return TextField(
       controller: controller,
       decoration: InputDecoration(

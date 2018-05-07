@@ -5,7 +5,7 @@ import '../model/data.dart';
 import '../model/product.dart';
 
 List<Card> buildGridCards(BuildContext context) {
-  List<Product> products = getAllProducts();
+  List<Product> products = getProducts(Category.all);
 
   if (products == null || products.isEmpty) {
     return <Card>[];

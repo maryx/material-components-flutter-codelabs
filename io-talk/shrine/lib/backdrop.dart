@@ -50,17 +50,17 @@ class _BackdropState extends State<Backdrop>
   @override
   void didUpdateWidget(Backdrop old) {
     super.didUpdateWidget(old);
-//    if (widget.currentCategory != old.currentCategory) {
-//      setState(() {
-//        _controller.fling(
-//            velocity:
-//                _backdropPanelVisible ? -_kFlingVelocity : _kFlingVelocity);
-//      });
-//    } else if (!_backdropPanelVisible) {
-//      setState(() {
-//        _controller.fling(velocity: _kFlingVelocity);
-//      });
-//    }
+    if (widget.currentCategory != old.currentCategory) {
+      setState(() {
+        _controller.fling(
+            velocity:
+                _backdropPanelVisible ? -_kFlingVelocity : _kFlingVelocity);
+      });
+    } else if (!_backdropPanelVisible) {
+      setState(() {
+        _controller.fling(velocity: _kFlingVelocity);
+      });
+    }
   }
 
   @override
@@ -129,8 +129,7 @@ class Backdrop extends StatefulWidget {
     this.currentCategory,
     @required this.frontPanel,
     @required this.backPanel,
-  })  : //assert(currentCategory != null),
-        assert(frontPanel != null),
+  })  : assert(frontPanel != null),
         assert(backPanel != null);
 
   @override

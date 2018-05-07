@@ -1,7 +1,7 @@
 import 'product.dart';
 
-List<Product> getAllProducts() {
-  return const <Product>[
+List<Product> getProducts(Category category) {
+  const allProducts = <Product>[
     Product(
       category: Category.accessories,
       id: 0,
@@ -207,6 +207,13 @@ List<Product> getAllProducts() {
     ),
     Product(
       category: Category.clothing,
+      id: 29,
+      isFeatured: true,
+      name: 'Ginger scarf',
+      price: 98,
+    ),
+    Product(
+      category: Category.clothing,
       id: 30,
       isFeatured: true,
       name: 'Ramona crossover',
@@ -249,13 +256,6 @@ List<Product> getAllProducts() {
     ),
     Product(
       category: Category.clothing,
-      id: 29,
-      isFeatured: true,
-      name: 'Ginger scarf',
-      price: 98,
-    ),
-    Product(
-      category: Category.clothing,
       id: 36,
       isFeatured: false,
       name: 'Sunshirt dress',
@@ -269,4 +269,11 @@ List<Product> getAllProducts() {
       price: 58,
     ),
   ];
+  if (category == Category.all) {
+    return allProducts;
+  } else {
+    return allProducts.where((Product p) {
+      return p.category == category;
+    }).toList();
+  }
 }

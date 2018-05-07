@@ -5,14 +5,15 @@ import 'backdrop.dart';
 import 'colors.dart';
 import 'home.dart';
 import 'login.dart';
+import 'model/product.dart';
 import 'supplemental/cut_corners_border.dart';
 import 'supplemental/menu_page.dart';
 
-class ShrineApp extends StatelessWidget {
+class _ShrineAppState extends State<ShrineApp> {
+  Category _currentCategory = Category.all;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shrine',
@@ -21,6 +22,12 @@ class ShrineApp extends StatelessWidget {
       onGenerateRoute: _getRoute,
       theme: _buildLightTheme(),
     );
+  }
+
+  void _onCategoryTap(Category category) {
+    setState(() {
+      _currentCategory = category;
+    });
   }
 }
 
@@ -87,4 +94,9 @@ Route<dynamic> _getRoute(RouteSettings settings) {
   }
 
   return null;
+}
+
+class ShrineApp extends StatefulWidget {
+  @override
+  _ShrineAppState createState() => _ShrineAppState();
 }

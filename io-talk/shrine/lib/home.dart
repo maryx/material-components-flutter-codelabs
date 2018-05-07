@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: GridView.count(
         crossAxisCount: 2,
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         childAspectRatio: 8.0 / 9.0,
         children: buildGridCards(context),
       ),

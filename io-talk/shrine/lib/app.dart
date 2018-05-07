@@ -20,7 +20,6 @@ class _ShrineAppState extends State<ShrineApp> {
       home: HomePage(),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
-      theme: _buildLightTheme(),
     );
   }
 
@@ -35,8 +34,8 @@ ThemeData _buildLightTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
     accentColor: kShrineBrown,
-    scaffoldBackgroundColor: Colors.white,
-    cardColor: Colors.white,
+    scaffoldBackgroundColor: kShrineWhite,
+    cardColor: kShrineWhite,
     textSelectionColor: kShrinePink,
     errorColor: kShrineError,
     buttonTheme: ButtonThemeData(

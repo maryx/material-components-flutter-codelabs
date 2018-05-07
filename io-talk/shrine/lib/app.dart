@@ -38,7 +38,7 @@ ThemeData _buildLightTheme() {
     scaffoldBackgroundColor: Colors.white,
     cardColor: Colors.white,
     textSelectionColor: kShrinePink,
-    errorColor: Colors.red,
+    errorColor: kShrineError,
     buttonTheme: ButtonThemeData(
       textTheme: ButtonTextTheme.accent,
     ),

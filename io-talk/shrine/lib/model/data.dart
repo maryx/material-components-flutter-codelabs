@@ -139,7 +139,7 @@ List<Product> getProducts(Category category) {
       category: Category.clothing,
       id: 19,
       isFeatured: false,
-      name: 'Adobe sweater',
+      name: 'Clay sweater',
       price: 48,
     ),
     Product(

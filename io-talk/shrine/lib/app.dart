@@ -35,7 +35,7 @@ ThemeData _buildLightTheme() {
   return base.copyWith(
     accentColor: kShrineBrown,
     scaffoldBackgroundColor: kShrineWhite,
-    cardColor: kShrineWhite,
+    cardColor: Colors.white,
     textSelectionColor: kShrinePink,
     errorColor: kShrineError,
     buttonTheme: ButtonThemeData(

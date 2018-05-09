@@ -11,9 +11,9 @@ class MenuPage extends StatelessWidget {
 
   const MenuPage({
     Key key,
-    @required this.currentCategory,
+    this.currentCategory: Category.all,
     this.onCategoryTap,
-  }) : assert(currentCategory != null);
+  });
 
   Widget _buildCategory(Category category, BuildContext context) {
     var categoryString =

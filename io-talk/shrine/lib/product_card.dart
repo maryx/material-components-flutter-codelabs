@@ -21,6 +21,7 @@ class ProductCard extends StatelessWidget {
   Widget _buildText(BuildContext context, ThemeData theme) {
     return SizedBox(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text(

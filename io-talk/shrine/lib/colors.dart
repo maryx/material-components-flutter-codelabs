@@ -8,6 +8,5 @@ const kShrineWhite = const Color(0xFFFFFBFA);
 const kShrineError = const Color(0xFFC5032B);
 
 // Alt theme
-const kShrineGreen100 = const Color(0xFF96f7aa);
-const kShrineGreen200 = const Color(0xFF07681b);
-const kShrinePurple = const Color(0xFFece0f9);
+const kShrinePurple = const Color(0xFF9765F4);
+const kShrineGreen = const Color(0xFFC2F465);

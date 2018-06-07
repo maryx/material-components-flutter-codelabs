@@ -17,9 +17,13 @@ class _ShrineAppState extends State<ShrineApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shrine',
-      home: HomePage(),
+      home: Backdrop(
+        frontPanel: HomePage(),
+        backPanel: MenuPage(),
+      ),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
+      theme: _buildLightTheme(),
     );
   }
 
@@ -33,6 +37,10 @@ class _ShrineAppState extends State<ShrineApp> {
 ThemeData _buildLightTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
+    primaryColor: kShrinePink,
+    primaryTextTheme: _buildTextTheme(base.primaryTextTheme, kShrineBrown),
+    primaryIconTheme: base.iconTheme.copyWith(color: kShrineBrown),
+    buttonColor: kShrinePink,
     accentColor: kShrineBrown,
     scaffoldBackgroundColor: kShrineWhite,
     cardColor: Colors.white,
@@ -60,6 +68,7 @@ TextTheme _buildTextTheme(TextTheme base, Color color) {
         ),
       )
       .apply(
+        fontFamily: 'Rubik',
         displayColor: color,
         bodyColor: color,
       );
@@ -68,18 +77,18 @@ TextTheme _buildTextTheme(TextTheme base, Color color) {
 ThemeData _buildAltTheme() {
   final ThemeData base = ThemeData.dark();
   return base.copyWith(
-    primaryColor: kShrineGreen100,
-    accentColor: kShrineGreen200,
-    buttonColor: kShrineGreen200,
+    primaryColor: kShrinePurple,
+    accentColor: kShrinePurple,
+    buttonColor: kShrineGreen,
     buttonTheme: ButtonThemeData(
       textTheme: ButtonTextTheme.accent,
     ),
     inputDecorationTheme: InputDecorationTheme(
       border: CutCornersBorder(),
     ),
-    textTheme: _buildTextTheme(base.textTheme, kShrineGreen100),
-    primaryTextTheme: _buildTextTheme(base.primaryTextTheme, kShrineGreen100),
-    accentTextTheme: _buildTextTheme(base.accentTextTheme, kShrineGreen100),
+    textTheme: _buildTextTheme(base.textTheme, Colors.white),
+    primaryTextTheme: _buildTextTheme(base.primaryTextTheme, Colors.white),
+    accentTextTheme: _buildTextTheme(base.accentTextTheme, Colors.white),
   );
 }
 

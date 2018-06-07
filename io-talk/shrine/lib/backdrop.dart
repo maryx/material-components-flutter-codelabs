@@ -28,12 +28,22 @@ class _BackdropState extends State<Backdrop>
     final RelativeRect bottomOfScreen =
         RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0);
 
+    Animation<RelativeRect> panelAnimation =
+        RelativeRectTween(begin: panelHeight, end: bottomOfScreen)
+            .animate(_controller.view);
+
     return Container(
       child: Stack(
         children: <Widget>[
           widget.backPanel,
-          _BackdropPanel(
-            child: widget.frontPanel,
+          PositionedTransition(
+            rect: panelAnimation,
+            child: _BackdropPanel(
+              onTap: () {
+                _controller.fling(velocity: _backdropPanelVisible ? -2.0 : 2.0);
+              },
+              child: widget.frontPanel,
+            ),
           ),
         ],
       ),

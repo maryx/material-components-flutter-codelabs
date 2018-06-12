@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 120.0),
             PrimaryColorOverride(
-              color: kShrineBrown900,
+              color: blue100,
               child: TextField(
                 controller: _usernameController,
                 decoration: InputDecoration(
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 12.0),
             new PrimaryColorOverride(
-              color: kShrineBrown900,
+              color: blue100,
               child: TextField(
                 controller: _passwordController,
                 decoration: InputDecoration(

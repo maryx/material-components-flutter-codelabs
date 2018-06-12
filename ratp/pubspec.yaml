@@ -16,7 +16,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/diamond.png
+    - assets/map.png
+    - assets/ratp.png
     - assets/slanted_menu.png
     - packages/shrine_images/0-0.jpg
     - packages/shrine_images/1-0.jpg
@@ -58,8 +59,8 @@ flutter:
     - packages/shrine_images/37-0.jpg
 
   fonts:
-    - family: Rubik
+    - family: Cabin
       fonts:
-        - asset: fonts/Rubik-Regular.ttf
-        - asset: fonts/Rubik-Medium.ttf
-          weight: 500
+        - asset: fonts/Cabin-Regular.ttf
+        - asset: fonts/Cabin-SemiBold.ttf
+          weight: 600

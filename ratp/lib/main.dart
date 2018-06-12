@@ -16,4 +16,4 @@ import 'package:flutter/material.dart';
 
 import 'app.dart';
 
-void main() => runApp(ShrineApp());
+void main() => runApp(RATPApp());

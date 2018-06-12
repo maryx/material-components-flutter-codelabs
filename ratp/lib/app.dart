@@ -22,19 +22,21 @@ import 'category_menu_page.dart';
 import 'model/product.dart';
 import 'supplemental/cut_corners_border.dart';
 
-class ShrineApp extends StatefulWidget {
+class RATPApp extends StatefulWidget {
   @override
-  _ShrineAppState createState() => _ShrineAppState();
+  _RATPAppState createState() => _RATPAppState();
 }
 
-class _ShrineAppState extends State<ShrineApp> {
+class _RATPAppState extends State<RATPApp> {
   Category _currentCategory = Category.home;
   
   @override
   Widget build(BuildContext context) {
+    final categoryString =
+    _currentCategory.toString().replaceAll('Category.', '').toUpperCase().replaceAll('_', ' ');
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Shrine',
+      title: 'RATP',
       home: Backdrop(
         currentCategory: _currentCategory,
         frontLayer: HomePage(category: _currentCategory),
@@ -42,11 +44,11 @@ class _ShrineAppState extends State<ShrineApp> {
           currentCategory: _currentCategory,
           onCategoryTap: _onCategoryTap,
         ),
-        frontTitle: Text('SHRINE'),
+        frontTitle: Text(categoryString),
         backTitle: Text('MENU'),
       ),
-      initialRoute: '/login',
-      onGenerateRoute: _getRoute,
+      //initialRoute: '/home',
+      //onGenerateRoute: _getRoute,
       theme: _kShrineTheme,
     );
   }
@@ -59,40 +61,40 @@ class _ShrineAppState extends State<ShrineApp> {
   }
 }
 
-Route<dynamic> _getRoute(RouteSettings settings) {
-  if (settings.name == '/login') {
-    return MaterialPageRoute<void>(
-      settings: settings,
-      builder: (BuildContext context) => LoginPage(),
-      fullscreenDialog: true,
-    );
-  }
-
-  return null;
-}
+//Route<dynamic> _getRoute(RouteSettings settings) {
+//  if (settings.name == '/login') {
+//    return MaterialPageRoute<void>(
+//      settings: settings,
+//      builder: (BuildContext context) => LoginPage(),
+//      fullscreenDialog: true,
+//    );
+//  }
+//
+//  return null;
+//}
 
 final ThemeData _kShrineTheme = _buildShrineTheme();
 
 IconThemeData _customIconTheme(IconThemeData original) {
-  return original.copyWith(color: kShrineBrown900);
+  return original.copyWith(color: blue100);
 }
 
 ThemeData _buildShrineTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
-    accentColor: kShrineBrown900,
-    primaryColor: kShrinePink100,
-    buttonColor: kShrinePink100,
-    scaffoldBackgroundColor: kShrineBackgroundWhite,
-    cardColor: kShrineBackgroundWhite,
-    textSelectionColor: kShrinePink100,
-    errorColor: kShrineErrorRed,
+    accentColor: blue100,
+    primaryColor: teal,
+    buttonColor: teal,
+    scaffoldBackgroundColor: Colors.white,
+    cardColor: Colors.white,
+    textSelectionColor: teal,
+    errorColor: red,
     buttonTheme: ButtonThemeData(
       textTheme: ButtonTextTheme.accent,
     ),
-    primaryIconTheme: base.iconTheme.copyWith(color: kShrineBrown900),
+    primaryIconTheme: base.iconTheme.copyWith(color: blue100),
     inputDecorationTheme: InputDecorationTheme(
-      border: CutCornersBorder(),
+      border: OutlineInputBorder(),
     ),
     textTheme: _buildShrineTextTheme(base.textTheme),
     primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
@@ -104,7 +106,7 @@ ThemeData _buildShrineTheme() {
 TextTheme _buildShrineTextTheme(TextTheme base) {
   return base.copyWith(
     headline: base.headline.copyWith(
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
     ),
     title: base.title.copyWith(
         fontSize: 18.0
@@ -114,12 +116,12 @@ TextTheme _buildShrineTextTheme(TextTheme base) {
       fontSize: 14.0,
     ),
     body2: base.body2.copyWith(
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
       fontSize: 16.0,
     ),
   ).apply(
-    fontFamily: 'Rubik',
-    displayColor: kShrineBrown900,
-    bodyColor: kShrineBrown900,
+    fontFamily: 'Cabin',
+    displayColor: blue100,
+    bodyColor: blue100,
   );
 }

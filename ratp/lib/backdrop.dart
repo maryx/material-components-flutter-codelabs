@@ -16,7 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 import 'model/product.dart';
-import 'login.dart';
+import 'colors.dart';
 
 const double _kFlingVelocity = 2.0;
 
@@ -33,8 +33,9 @@ class _FrontLayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: blue100,
       elevation: 16.0,
-      shape: BeveledRectangleBorder(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(topLeft: Radius.circular(46.0)),
       ),
       child: Column(
@@ -146,7 +147,7 @@ class _BackdropState extends State<Backdrop>
   @override
   void didUpdateWidget(Backdrop old) {
     super.didUpdateWidget(old);
-    
+
     if (widget.currentCategory != old.currentCategory) {
       _toggleBackdropLayerVisibility();
     } else if (!_frontLayerVisible) {
@@ -199,54 +200,36 @@ class _BackdropState extends State<Backdrop>
 
   @override
   Widget build(BuildContext context) {
-    var brandedIcon = Row(children: <Widget>[
-      ImageIcon(AssetImage('assets/slanted_menu.png')),
-      ImageIcon(AssetImage('assets/diamond.png')),
-    ]);
-
-    var appBar = AppBar(
-      brightness: Brightness.light,
+    final appBar = AppBar(
       elevation: 0.0,
-      titleSpacing: 0.0,
-      title: _BackdropTitle(
-        listenable: _controller.view,
-        frontTitle: Row(
-          children: <Widget>[
-            SizedBox(
-              width: 72.0,
-              child: IconButton(
-                padding: EdgeInsets.only(left: 20.0),
-                onPressed: _toggleBackdropLayerVisibility,
-                icon: brandedIcon,
-              ),
-            ),
-            widget.frontTitle,
-          ],
-        ),
-        backTitle: IconButton(
-          onPressed: _toggleBackdropLayerVisibility,
-          icon: Icon(Icons.close),
+      leading: IconButton(
+        onPressed: _toggleBackdropLayerVisibility,
+        icon: AnimatedIcon(
+          icon: AnimatedIcons.close_menu,
+          progress: _controller.view,
         ),
       ),
+      title: _BackdropTitle(
+        listenable: _controller.view,
+        frontTitle: widget.frontTitle,
+        backTitle: widget.backTitle,
+      ),
       actions: <Widget>[
-        new IconButton(
+        IconButton(
           icon: const Icon(Icons.search),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
-            );
-          },
+          onPressed: () {},
         ),
-        new IconButton(
-          icon: const Icon(Icons.tune),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
-            );
-          },
-        ),
+        Image.asset('assets/ratp.png'),
+
+//        new IconButton(
+//          icon: const Icon(Icons.tune),
+//          onPressed: () {
+//            Navigator.push(
+//              context,
+//              MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
+//            );
+//          },
+//        ),
       ],
     );
     return Scaffold(

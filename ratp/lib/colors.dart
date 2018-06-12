@@ -14,11 +14,10 @@
 
 import 'package:flutter/material.dart';
 
-const white = const Color(0xFFE8E8E8);
-const teal = const Color(0xFF06B59C);
+const teal = const Color(0xFF00A994);
 
-const blue50 = const Color(0xFF4572AF);
-const blue100 = const Color(0xFF003E91);
+const blue50 = const Color(0xFF4469C9);
+const blue100 = const Color(0xFF2F4C99);
 
 const black = const Color(0xFF333333);
 const red = const Color(0xFFF47975);

@@ -19,6 +19,8 @@ import 'model/product.dart';
 import 'colors.dart';
 
 const double _kFlingVelocity = 2.0;
+const double _layerTitleHeight = 48.0;
+
 
 class _FrontLayer extends StatelessWidget {
   const _FrontLayer({
@@ -45,7 +47,7 @@ class _FrontLayer extends StatelessWidget {
             behavior: HitTestBehavior.opaque,
             onTap: onTap,
             child: Container(
-              height: 40.0,
+              height: _layerTitleHeight,
               alignment: AlignmentDirectional.centerStart,
             ),
           ),
@@ -173,9 +175,8 @@ class _BackdropState extends State<Backdrop>
   }
 
   Widget _buildStack(BuildContext context, BoxConstraints constraints) {
-    const double layerTitleHeight = 48.0;
     final Size layerSize = constraints.biggest;
-    final double layerTop = layerSize.height - layerTitleHeight;
+    final double layerTop = layerSize.height - _layerTitleHeight;
 
     Animation<RelativeRect> layerAnimation = RelativeRectTween(
       begin: RelativeRect.fromLTRB(

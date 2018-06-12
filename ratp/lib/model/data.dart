@@ -13,86 +13,86 @@
 // limitations under the License.
 
 import 'product.dart';
-//
-//List<Product> getProducts(Category category) {
-//  const allProducts = <Product>[
-//    Product(
-//      category: Category.accessories,
-//      id: 0,
-//      isFeatured: true,
-//      name: 'Vagabond sack',
-//      price: 120,
-//    ),
-//    Product(
-//      category: Category.accessories,
-//      id: 1,
-//      isFeatured: true,
-//      name: 'Stella sunglasses',
-//      price: 58,
-//    ),
-//    Product(
-//      category: Category.accessories,
-//      id: 2,
-//      isFeatured: false,
-//      name: 'Whitney belt',
-//      price: 35,
-//    ),
-//    Product(
-//      category: Category.accessories,
-//      id: 3,
-//      isFeatured: true,
-//      name: 'Garden strand',
-//      price: 98,
-//    ),
-//    Product(
-//      category: Category.accessories,
-//      id: 4,
-//      isFeatured: false,
-//      name: 'Strut earrings',
-//      price: 34,
-//    ),
-//    Product(
-//      category: Category.accessories,
-//      id: 5,
-//      isFeatured: false,
-//      name: 'Varsity socks',
-//      price: 12,
-//    ),
-//    Product(
-//      category: Category.accessories,
-//      id: 6,
-//      isFeatured: false,
-//      name: 'Weave keyring',
-//      price: 16,
-//    ),
-//    Product(
-//      category: Category.accessories,
-//      id: 7,
-//      isFeatured: true,
-//      name: 'Gatsby hat',
-//      price: 40,
-//    ),
-//    Product(
-//      category: Category.accessories,
-//      id: 8,
-//      isFeatured: true,
-//      name: 'Shrug bag',
-//      price: 198,
-//    ),
-//    Product(
-//      category: Category.home,
-//      id: 9,
-//      isFeatured: true,
-//      name: 'Gilt desk trio',
-//      price: 58,
-//    ),
-//    Product(
-//      category: Category.home,
-//      id: 10,
-//      isFeatured: false,
-//      name: 'Copper wire rack',
-//      price: 18,
-//    ),
+
+List<Product> getProducts(Category category) {
+  const allProducts = <Product>[
+    Product(
+      category: Category.home,
+      id: 0,
+      isFeatured: true,
+      name: 'Vagabond sack',
+      price: 120,
+    ),
+    Product(
+      category: Category.home,
+      id: 1,
+      isFeatured: true,
+      name: 'Stella sunglasses',
+      price: 58,
+    ),
+    Product(
+      category: Category.home,
+      id: 2,
+      isFeatured: false,
+      name: 'Whitney belt',
+      price: 35,
+    ),
+    Product(
+      category: Category.home,
+      id: 3,
+      isFeatured: true,
+      name: 'Garden strand',
+      price: 98,
+    ),
+    Product(
+      category: Category.home,
+      id: 4,
+      isFeatured: false,
+      name: 'Strut earrings',
+      price: 34,
+    ),
+    Product(
+      category: Category.home,
+      id: 5,
+      isFeatured: false,
+      name: 'Varsity socks',
+      price: 12,
+    ),
+    Product(
+      category: Category.home,
+      id: 6,
+      isFeatured: false,
+      name: 'Weave keyring',
+      price: 16,
+    ),
+    Product(
+      category: Category.home,
+      id: 7,
+      isFeatured: true,
+      name: 'Gatsby hat',
+      price: 40,
+    ),
+    Product(
+      category: Category.home,
+      id: 8,
+      isFeatured: true,
+      name: 'Shrug bag',
+      price: 198,
+    ),
+    Product(
+      category: Category.home,
+      id: 9,
+      isFeatured: true,
+      name: 'Gilt desk trio',
+      price: 58,
+    ),
+    Product(
+      category: Category.home,
+      id: 10,
+      isFeatured: false,
+      name: 'Copper wire rack',
+      price: 18,
+    ),
 //    Product(
 //      category: Category.home,
 //      id: 11,
@@ -282,13 +282,6 @@ import 'product.dart';
 //      name: 'Fine lines tee',
 //      price: 58,
 //    ),
-//  ];
-//  if (category == Category.all) {
-//    return allProducts;
-//  } else {
-//    return allProducts.where((Product p) {
-//      return p.category == category;
-//    }).toList();
-//  }
-//}
-//
+  ];
+  return allProducts;
+}

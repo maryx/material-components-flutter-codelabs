@@ -62,5 +62,5 @@ flutter:
     - family: Cabin
       fonts:
         - asset: fonts/Cabin-Regular.ttf
-        - asset: fonts/Cabin-SemiBold.ttf
+        - asset: fonts/Cabin-Bold.ttf
           weight: 600

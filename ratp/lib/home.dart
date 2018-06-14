@@ -14,10 +14,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'colors.dart';
-import 'model/data.dart';
-import 'model/product.dart';
-import 'supplemental/util.dart';
+import 'util.dart';
 
 
 class HomePage extends StatefulWidget {

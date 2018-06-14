@@ -14,7 +14,46 @@
 
 import 'package:flutter/material.dart';
 
-import '../colors.dart';
+/// Colors for this app!
+const teal = const Color(0xFF00A994);
+
+const blue50 = const Color(0xFF4469C9);
+const blue100 = const Color(0xFF2F4C99);
+
+const black = const Color(0xFF333333);
+const red = const Color(0xFFF47975);
+
+enum Category {
+  home,
+  itinerary,
+  schedules,
+  nearby,
+  maps,
+  lines,
+  stations,
+  data_update,
+  traffic_info,
+  shopping,
+  account,
+  contact,
+  credits,
+}
+
+final categoryMap = <Category, String>{
+  Category.home: 'accueil',
+  Category.itinerary: 'itinéraire',
+  Category.schedules: 'horaires',
+  Category.nearby: 'à proximité',
+  Category.maps: 'cartes',
+  Category.lines: 'lignes de métro',
+  Category.stations: 'gares',
+  Category.data_update: 'mise à jour',
+  Category.traffic_info: 'info trafic',
+  Category.shopping: 'achats',
+  Category.account: 'mon compte',
+  Category.contact: 'contact',
+  Category.credits: 'crédits',
+};
 
 const _buttonBorderRadius = Radius.circular(8.0);
 const spacing = SizedBox(height: 12.0);
@@ -30,6 +69,7 @@ TextTheme buildTextTheme(TextTheme base, Color color) {
           fontWeight: FontWeight.w400,
           fontSize: 14.0,
         ),
+        body1: base.body1.copyWith(fontSize: 18.0),
         body2: base.body2.copyWith(
           fontWeight: FontWeight.w600,
           fontSize: 16.0,
@@ -74,7 +114,7 @@ Widget buildSearchTextFields(BuildContext context, bool showSearch) {
         elevation: 8.0,
         child: Container(
           color: blue100,
-          height: 200.0,
+          height: showSearch ? 220.0 : 160.0,
           padding: EdgeInsets.symmetric(horizontal: 40.0),
           child: ListView(
             children: <Widget>[
@@ -83,14 +123,22 @@ Widget buildSearchTextFields(BuildContext context, bool showSearch) {
               spacing,
               _buildTextField(context, 'À'),
               spacing,
-              showSearch ? RaisedButton(
-                child: Text('Chercher'),
-                elevation: 8.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(_buttonBorderRadius),
-                ),
-                onPressed: () {},
-              ) : Container(),
+              showSearch
+                  ? SizedBox(
+                      height: 50.0,
+                      child: RaisedButton(
+                        child: Text(
+                          'Chercher',
+                          style: Theme.of(context).textTheme.body1,
+                        ),
+                        elevation: 8.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(_buttonBorderRadius),
+                        ),
+                        onPressed: () {},
+                      ),
+                    )
+                  : Container(),
             ],
           ),
         ),

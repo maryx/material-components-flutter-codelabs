@@ -17,12 +17,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 
 import 'backdrop.dart';
-import 'colors.dart';
-import 'home.dart';
 import 'category_menu_page.dart';
-import 'model/product.dart';
-import 'supplemental/util.dart';
+import 'home.dart';
 import 'schedule.dart';
+import 'util.dart';
 
 const _locale = Locale('fr', 'FR');
 
@@ -36,14 +34,8 @@ class _RATPAppState extends State<RATPApp> {
 
   @override
   Widget build(BuildContext context) {
-    final categoryString = _currentCategory
-        .toString()
-        .replaceAll('Category.', '')
-        .toUpperCase()
-        .replaceAll('_', ' ');
     return MaterialApp(
       localizationsDelegates: [
-        // ... app-specific localization delegate[s] here
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
@@ -58,7 +50,7 @@ class _RATPAppState extends State<RATPApp> {
           currentCategory: _currentCategory,
           onCategoryTap: _onCategoryTap,
         ),
-        frontTitle: Text(categoryString),
+        frontTitle: Text(categoryMap[_currentCategory].toUpperCase()),
         backTitle: Text('MENU'),
       ),
       theme: _buildTheme(),
@@ -98,6 +90,7 @@ ThemeData _buildTheme() {
     textSelectionColor: teal,
     hintColor: Colors.white,
     errorColor: red,
+    unselectedWidgetColor: Colors.white,
     buttonTheme: ButtonThemeData(
       textTheme: ButtonTextTheme.accent,
     ),

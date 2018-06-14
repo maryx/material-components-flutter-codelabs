@@ -15,8 +15,7 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-import 'colors.dart';
-import 'model/product.dart';
+import 'util.dart';
 
 class CategoryMenuPage extends StatelessWidget {
   final Category currentCategory;
@@ -30,8 +29,6 @@ class CategoryMenuPage extends StatelessWidget {
   }) : assert(currentCategory != null);
 
   Widget _buildCategory(Category category, BuildContext context) {
-    var categoryString =
-        category.toString().replaceAll('Category.', '').toUpperCase().replaceAll('_', ' ');
     return GestureDetector(
       onTap: () => onCategoryTap(category),
       child: category == currentCategory
@@ -39,7 +36,7 @@ class CategoryMenuPage extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: 16.0),
                 Text(
-                  categoryString,
+                  categoryMap[category].toUpperCase(),
                   style: Theme.of(context).textTheme.body2,
                   textAlign: TextAlign.center,
                 ),
@@ -54,7 +51,7 @@ class CategoryMenuPage extends StatelessWidget {
           : Container(
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Text(
-                categoryString,
+                categoryMap[category].toUpperCase(),
                 style: Theme.of(context).textTheme.body2.copyWith(
                       color: blue100.withAlpha(153),
                     ),

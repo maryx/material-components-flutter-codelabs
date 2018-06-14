@@ -11,24 +11,20 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
-
-import 'colors.dart';
-import 'model/product.dart';
 import 'dart:async';
 
-import 'supplemental/util.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
+
+import 'util.dart';
 
 const _buttonBorderRadius = Radius.circular(8.0);
+const _padding = EdgeInsets.symmetric(horizontal: 40.0);
 
 class SchedulePage extends StatefulWidget {
-  static const String routeName = '/material/date-and-time-pickers';
-
   final Category category;
-
+  static const String routeName = '/material/date-and-time-pickers';
   const SchedulePage({this.category: Category.home});
 
   @override
@@ -36,40 +32,30 @@ class SchedulePage extends StatefulWidget {
 }
 
 class _ScheduleState extends State<SchedulePage> {
-  DateTime _date = new DateTime.now();
-  TimeOfDay _time = const TimeOfDay(hour: 7, minute: 28);
+  DateTime _date = DateTime.now();
+  TimeOfDay _time = TimeOfDay(hour: 7, minute: 28);
   Color _departColor = Colors.white;
   Color _arriveColor = blue100;
-  bool _checked = false;
+
   @override
   void initState() {
     super.initState();
     initializeDateFormatting();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    Intl.defaultLocale = 'fr_FR';
-    return Scaffold(
-      backgroundColor: blue100,
-      resizeToAvoidBottomPadding: false,
-      body: Container(
-        color: blue100,
-        height: MediaQuery.of(context).size.height,
-        child: _buildSchedules(),
-      ),
-    );
-  }
-
   Widget _buildButtons() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SizedBox(
           height: 50.0,
           width: 150.0,
           child: RaisedButton(
             color: _departColor,
-            child: Text('Départ'),
+            child: Text(
+              'Départ',
+              style: Theme.of(context).textTheme.body1.copyWith(color: teal),
+            ),
             elevation: 8.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -91,7 +77,8 @@ class _ScheduleState extends State<SchedulePage> {
           width: 150.0,
           child: RaisedButton(
             color: _arriveColor,
-            child: Text('Arrivée'),
+            child: Text('Arrivée',
+                style: Theme.of(context).textTheme.body1.copyWith(color: teal)),
             elevation: 8.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -112,61 +99,108 @@ class _ScheduleState extends State<SchedulePage> {
     );
   }
 
-  Widget _buildSchedules() {
-    return DropdownButtonHideUnderline(
-      child: SafeArea(
-        top: false,
-        bottom: false,
-        child: ListView(
-          padding: EdgeInsets.all(16.0),
-          children: <Widget>[
-            buildSearchTextFields(context, false),
-            _buildButtons(),
-            spacing,
-            _DateTimePicker(
-              labelText: 'Date',
-              selectedDate: _date,
-              selectedTime: _time,
-              selectDate: (DateTime date) {
-                setState(() {
-                  _date = date;
-                });
-              },
-              selectTime: (TimeOfDay time) {
-                setState(() {
-                  _time = time;
-                });
-              },
-            ),
-            spacing,
-            Container(
-            color: Colors.white,
-              child: Row(
-                children: <Widget>[
-                  Checkbox(
-                    value: _checked,
-                    onChanged: (bool checked) {},
-                    activeColor: Colors.white,
+  Widget _buildCheckbox() {
+    return Container(
+      margin: _padding,
+      child: Row(
+        children: <Widget>[
+          Checkbox(
+            value: false,
+            onChanged: (bool checked) {},
+          ),
+          Text(
+            'Itinéraires accessibles',
+            style:
+                Theme.of(context).textTheme.body1.copyWith(color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildButton() {
+    return Padding(
+      padding: _padding,
+      child: SizedBox(
+        height: 50.0,
+        child: RaisedButton(
+          elevation: 8.0,
+          color: Colors.white,
+          child: Row(
+            children: <Widget>[
+              Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1.0, color: teal),
+                    shape: BoxShape.circle,
                   ),
-                  Text('Itinéraires accessibles'),
-                ],
+                  child: Icon(Icons.arrow_forward)),
+              Padding(
+                padding: EdgeInsets.only(left: 16.0),
+                child: Text(
+                  "C'est parti",
+                  style:
+                      Theme.of(context).textTheme.body1.copyWith(color: teal),
+                ),
               ),
+            ],
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(_buttonBorderRadius),
+          ),
+          onPressed: () {},
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDatePicker() {
+    return Padding(
+      padding: _padding,
+      child: _DateTimePicker(
+        labelText: 'Date',
+        selectedDate: _date,
+        selectedTime: _time,
+        selectDate: (DateTime date) {
+          setState(() {
+            _date = date;
+          });
+        },
+        selectTime: (TimeOfDay time) {
+          setState(() {
+            _time = time;
+          });
+        },
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Intl.defaultLocale = 'fr_FR';
+
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      body: Container(
+        color: blue100,
+        height: MediaQuery.of(context).size.height,
+        child: DropdownButtonHideUnderline(
+          child: SafeArea(
+            top: false,
+            bottom: false,
+            child: ListView(
+              padding: EdgeInsets.all(16.0),
+              children: <Widget>[
+                buildSearchTextFields(context, false),
+                _buildButtons(),
+                spacing,
+                _buildDatePicker(),
+                spacing,
+                _buildCheckbox(),
+                spacing,
+                _buildButton(),
+              ],
             ),
-            spacing,
-            FlatButton(
-              color: Colors.white,
-              child: Row(
-                children: <Widget>[
-                  Icon(Icons.arrow_forward),
-                  Text("C'est parti"),
-                ],
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(_buttonBorderRadius),
-              ),
-              onPressed: () {},
-            ),
-          ],
+          ),
         ),
       ),
     );
@@ -191,19 +225,19 @@ class _InputDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new InkWell(
+    return InkWell(
       onTap: onPressed,
-      child: new InputDecorator(
-        decoration: new InputDecoration(
+      child: InputDecorator(
+        decoration: InputDecoration(
           labelText: labelText,
         ),
         baseStyle: valueStyle,
-        child: new Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            new Text(valueText, style: valueStyle),
-            new Icon(
+            Text(valueText, style: valueStyle),
+            Icon(
               Icons.arrow_drop_down,
               color: Colors.white70,
             ),
@@ -234,9 +268,9 @@ class _DateTimePicker extends StatelessWidget {
     final DateTime picked = await showDatePicker(
         locale: Locale('fr', 'FR'),
         context: context,
-        initialDate: new DateTime.now(),
-        firstDate: new DateTime(2015, 8),
-        lastDate: new DateTime(2101));
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
     if (picked != null && picked != selectedDate) selectDate(picked);
   }
 
@@ -252,19 +286,19 @@ class _DateTimePicker extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
-        new Expanded(
+        Expanded(
           flex: 4,
-          child: new _InputDropdown(
+          child: _InputDropdown(
             labelText: labelText,
-            valueText: new DateFormat.yMMMd().format(selectedDate),
+            valueText: DateFormat.yMMMd().format(selectedDate),
             valueStyle: valueStyle,
             onPressed: () {
               _selectDate(context);
             },
           ),
         ),
-        const SizedBox(width: 12.0),
-        new Expanded(
+        SizedBox(width: 12.0),
+        Expanded(
           flex: 3,
           child: new _InputDropdown(
             valueText: selectedTime.format(context),

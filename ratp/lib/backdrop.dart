@@ -15,12 +15,10 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-import 'model/product.dart';
-import 'colors.dart';
+import 'util.dart';
 
 const double _kFlingVelocity = 2.0;
 const double _layerTitleHeight = 48.0;
-
 
 class _FrontLayer extends StatelessWidget {
   const _FrontLayer({
@@ -217,20 +215,17 @@ class _BackdropState extends State<Backdrop>
       ),
       actions: <Widget>[
         IconButton(
-          icon: const Icon(Icons.search),
+          icon: Icon(Icons.search),
           onPressed: () {},
         ),
-        Image.asset('assets/ratp.png'),
-
-//        new IconButton(
-//          icon: const Icon(Icons.tune),
-//          onPressed: () {
-//            Navigator.push(
-//              context,
-//              MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
-//            );
-//          },
-//        ),
+        IconButton(
+          icon: Icon(Icons.more_vert),
+          onPressed: () {},
+        ),
+        Padding(
+          padding: EdgeInsets.all(4.0),
+          child: Image.asset('assets/ratp.png'),
+        ),
       ],
     );
     return Scaffold(

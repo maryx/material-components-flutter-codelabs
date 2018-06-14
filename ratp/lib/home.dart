@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'model/data.dart';
 import 'model/product.dart';
-import 'supplemental/asymmetric_view.dart';
+import 'supplemental/util.dart';
 
 const _spacing = SizedBox(height: 12.0);
 const _buttonBorderRadius = Radius.circular(7.0);
@@ -46,8 +46,11 @@ class _HomePageState extends State<HomePage> {
   Widget _buildTextField(String text) {
     return Theme(
       data: Theme.of(context).copyWith(
-            primaryColor: Colors.white,
-          ),
+          primaryColor: Colors.white,
+          textTheme: buildTextTheme(
+            Theme.of(context).textTheme,
+            Colors.white,
+          )),
       child: TextField(
         decoration: InputDecoration(
           fillColor: blue50,

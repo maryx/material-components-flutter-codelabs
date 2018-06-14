@@ -5,6 +5,8 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.15.6
+  flutter_localizations:
+    sdk: flutter
 
   cupertino_icons: ^0.1.0
   shrine_images: 1.0.0

@@ -13,14 +13,18 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 
 import 'backdrop.dart';
 import 'colors.dart';
 import 'home.dart';
 import 'category_menu_page.dart';
 import 'model/product.dart';
-import 'supplemental/cut_corners_border.dart';
+import 'supplemental/util.dart';
 import 'schedule.dart';
+
+const _locale = Locale('fr', 'FR');
 
 class RATPApp extends StatefulWidget {
   @override
@@ -38,6 +42,13 @@ class _RATPAppState extends State<RATPApp> {
         .toUpperCase()
         .replaceAll('_', ' ');
     return MaterialApp(
+      localizationsDelegates: [
+        // ... app-specific localization delegate[s] here
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      locale: _locale,
+      supportedLocales: <Locale>[_locale],
       debugShowCheckedModeBanner: false,
       title: 'RATP',
       home: Backdrop(
@@ -96,32 +107,9 @@ ThemeData _buildTheme() {
         borderRadius: BorderRadius.circular(4.0),
       ),
     ),
-    textTheme: _buildTextTheme(base.textTheme, Colors.white),
-    primaryTextTheme: _buildTextTheme(base.primaryTextTheme, blue100),
-    accentTextTheme: _buildTextTheme(base.accentTextTheme, blue100),
+    textTheme: buildTextTheme(base.textTheme, blue100), // was white
+    primaryTextTheme: buildTextTheme(base.primaryTextTheme, blue100),
+    accentTextTheme: buildTextTheme(base.accentTextTheme, blue100),
     iconTheme: base.iconTheme.copyWith(color: blue100),
   );
-}
-
-TextTheme _buildTextTheme(TextTheme base, Color color) {
-  return base
-      .copyWith(
-        headline: base.headline.copyWith(
-          fontWeight: FontWeight.w600,
-        ),
-        title: base.title.copyWith(fontSize: 18.0),
-        caption: base.caption.copyWith(
-          fontWeight: FontWeight.w400,
-          fontSize: 14.0,
-        ),
-        body2: base.body2.copyWith(
-          fontWeight: FontWeight.w600,
-          fontSize: 16.0,
-        ),
-      )
-      .apply(
-        fontFamily: 'Cabin',
-        displayColor: color,
-        bodyColor: color,
-      );
 }

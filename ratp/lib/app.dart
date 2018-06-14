@@ -90,9 +90,9 @@ class _RATPAppState extends State<RATPApp> {
 ThemeData _buildTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
-    accentColor: blue100,
+    accentColor: teal,
     primaryColor: teal,
-    buttonColor: teal,
+    buttonColor: Colors.white,
     scaffoldBackgroundColor: Colors.white,
     cardColor: Colors.white,
     textSelectionColor: teal,

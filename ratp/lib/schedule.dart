@@ -17,13 +17,16 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'colors.dart';
-import 'model/data.dart';
 import 'model/product.dart';
 import 'dart:async';
 
 import 'supplemental/util.dart';
 
+const _buttonBorderRadius = Radius.circular(8.0);
+
 class SchedulePage extends StatefulWidget {
+  static const String routeName = '/material/date-and-time-pickers';
+
   final Category category;
 
   const SchedulePage({this.category: Category.home});
@@ -33,6 +36,11 @@ class SchedulePage extends StatefulWidget {
 }
 
 class _ScheduleState extends State<SchedulePage> {
+  DateTime _date = new DateTime.now();
+  TimeOfDay _time = const TimeOfDay(hour: 7, minute: 28);
+  Color _departColor = Colors.white;
+  Color _arriveColor = blue100;
+  bool _checked = false;
   @override
   void initState() {
     super.initState();
@@ -53,8 +61,115 @@ class _ScheduleState extends State<SchedulePage> {
     );
   }
 
+  Widget _buildButtons() {
+    return Row(
+      children: <Widget>[
+        SizedBox(
+          height: 50.0,
+          width: 150.0,
+          child: RaisedButton(
+            color: _departColor,
+            child: Text('Départ'),
+            elevation: 8.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: _buttonBorderRadius,
+                  bottomLeft: _buttonBorderRadius),
+            ),
+            onPressed: () {
+              if (_arriveColor == Colors.white) {
+                setState(() {
+                  _departColor = Colors.white;
+                  _arriveColor = blue100;
+                });
+              }
+            },
+          ),
+        ),
+        SizedBox(
+          height: 50.0,
+          width: 150.0,
+          child: RaisedButton(
+            color: _arriveColor,
+            child: Text('Arrivée'),
+            elevation: 8.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topRight: _buttonBorderRadius,
+                  bottomRight: _buttonBorderRadius),
+            ),
+            onPressed: () {
+              if (_departColor == Colors.white) {
+                setState(() {
+                  _arriveColor = Colors.white;
+                  _departColor = blue100;
+                });
+              }
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildSchedules() {
-    return DateAndTimePickerDemo();
+    return DropdownButtonHideUnderline(
+      child: SafeArea(
+        top: false,
+        bottom: false,
+        child: ListView(
+          padding: EdgeInsets.all(16.0),
+          children: <Widget>[
+            buildSearchTextFields(context, false),
+            _buildButtons(),
+            spacing,
+            _DateTimePicker(
+              labelText: 'Date',
+              selectedDate: _date,
+              selectedTime: _time,
+              selectDate: (DateTime date) {
+                setState(() {
+                  _date = date;
+                });
+              },
+              selectTime: (TimeOfDay time) {
+                setState(() {
+                  _time = time;
+                });
+              },
+            ),
+            spacing,
+            Container(
+            color: Colors.white,
+              child: Row(
+                children: <Widget>[
+                  Checkbox(
+                    value: _checked,
+                    onChanged: (bool checked) {},
+                    activeColor: Colors.white,
+                  ),
+                  Text('Itinéraires accessibles'),
+                ],
+              ),
+            ),
+            spacing,
+            FlatButton(
+              color: Colors.white,
+              child: Row(
+                children: <Widget>[
+                  Icon(Icons.arrow_forward),
+                  Text("C'est parti"),
+                ],
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(_buttonBorderRadius),
+              ),
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -100,20 +215,20 @@ class _InputDropdown extends StatelessWidget {
 }
 
 class _DateTimePicker extends StatelessWidget {
-  const _DateTimePicker(
-      {Key key,
-      this.labelText,
-      this.selectedDate,
-      this.selectedTime,
-      this.selectDate,
-      this.selectTime})
-      : super(key: key);
-
   final String labelText;
   final DateTime selectedDate;
   final TimeOfDay selectedTime;
   final ValueChanged<DateTime> selectDate;
   final ValueChanged<TimeOfDay> selectTime;
+
+  const _DateTimePicker({
+    Key key,
+    this.labelText,
+    this.selectedDate,
+    this.selectedTime,
+    this.selectDate,
+    this.selectTime,
+  }) : super(key: key);
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -131,9 +246,9 @@ class _DateTimePicker extends StatelessWidget {
     if (picked != null && picked != selectedTime) selectTime(picked);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final TextStyle valueStyle = Theme.of(context).textTheme.title.copyWith(color: Colors.white);
+  Widget _buildDropdowns(BuildContext context) {
+    final TextStyle valueStyle =
+        Theme.of(context).textTheme.title.copyWith(color: Colors.white);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
@@ -162,49 +277,13 @@ class _DateTimePicker extends StatelessWidget {
       ],
     );
   }
-}
-
-class DateAndTimePickerDemo extends StatefulWidget {
-  static const String routeName = '/material/date-and-time-pickers';
-
-  @override
-  _DateAndTimePickerDemoState createState() =>
-      new _DateAndTimePickerDemoState();
-}
-
-class _DateAndTimePickerDemoState extends State<DateAndTimePickerDemo> {
-  DateTime _fromDate = new DateTime.now();
-  TimeOfDay _fromTime = const TimeOfDay(hour: 7, minute: 28);
 
   @override
   Widget build(BuildContext context) {
-    print(_fromDate);
-
-    return DropdownButtonHideUnderline(
-      child: SafeArea(
-        top: false,
-        bottom: false,
-        child: ListView(
-          padding: EdgeInsets.all(16.0),
-          children: <Widget>[
-            _DateTimePicker(
-              labelText: 'From',
-              selectedDate: _fromDate,
-              selectedTime: _fromTime,
-              selectDate: (DateTime date) {
-                setState(() {
-                  _fromDate = date;
-                });
-              },
-              selectTime: (TimeOfDay time) {
-                setState(() {
-                  _fromTime = time;
-                });
-              },
-            ),
-          ],
-        ),
-      ),
+    return Column(
+      children: <Widget>[
+        _buildDropdowns(context),
+      ],
     );
   }
 }

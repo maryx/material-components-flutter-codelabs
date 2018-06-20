@@ -100,6 +100,32 @@ Widget _buildTextField(BuildContext context, String text) {
   );
 }
 
+Widget _buildArrowToggle() {
+  return Positioned(
+    right: 16.0,
+    top: 50.0,
+    child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(25.0)),
+        //border: Border.all(width: 1.0, color: Colors.white),
+        color: blue100,
+      ),
+      width: 50.0,
+      height: 50.0,
+      child: IconButton(
+        icon: RotatedBox(
+          quarterTurns: 1,
+          child: Icon(
+            Icons.compare_arrows,
+            color: Colors.white,
+          ),
+        ),
+        onPressed: () {},
+      ),
+    ),
+  );
+}
+
 Widget buildSearchTextFields(BuildContext context, bool showSearch) {
   return Stack(
     children: <Widget>[
@@ -143,29 +169,7 @@ Widget buildSearchTextFields(BuildContext context, bool showSearch) {
           ),
         ),
       ),
-      Positioned(
-        right: 16.0,
-        top: 50.0,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(25.0)),
-            //border: Border.all(width: 1.0, color: Colors.white),
-            color: blue100,
-          ),
-          width: 50.0,
-          height: 50.0,
-          child: IconButton(
-            icon: RotatedBox(
-              quarterTurns: 1,
-              child: Icon(
-                Icons.compare_arrows,
-                color: Colors.white,
-              ),
-            ),
-            onPressed: () {},
-          ),
-        ),
-      ),
+      _buildArrowToggle(),
     ],
   );
 }

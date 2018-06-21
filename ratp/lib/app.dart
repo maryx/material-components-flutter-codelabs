@@ -52,6 +52,7 @@ class _RATPAppState extends State<RATPApp> {
         frontTitle: Text(categoryMap[_currentCategory].toUpperCase()),
         backTitle: Text('MENU'),
       ),
+      theme: _buildTheme(),
     );
   }
 
@@ -97,5 +98,10 @@ ThemeData _buildTheme() {
     primaryTextTheme: buildTextTheme(base.primaryTextTheme, blue100),
     accentTextTheme: buildTextTheme(base.accentTextTheme, blue100),
     iconTheme: base.iconTheme.copyWith(color: blue100),
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(4.0),
+      ),
+    ),
   );
 }

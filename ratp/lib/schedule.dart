@@ -64,6 +64,8 @@ class _ScheduleState extends State<SchedulePage> {
                 spacing,
                 _buildDatePicker(),
                 spacing,
+                _buildCheckbox(),
+                spacing,
                 _buildButton(),
               ],
             ),
@@ -77,14 +79,52 @@ class _ScheduleState extends State<SchedulePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        RaisedButton(
-          child: Text(
-            'Départ',
+        SizedBox(
+          height: 50.0,
+          width: 150.0,
+          child: RaisedButton(
+            color: _departColor,
+            child: Text(
+              'Départ',
+              style: Theme.of(context).textTheme.body1.copyWith(color: teal),
+            ),
+            elevation: 8.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: _buttonBorderRadius,
+                  bottomLeft: _buttonBorderRadius),
+            ),
+            onPressed: () {
+              if (_arriveColor == Colors.white) {
+                setState(() {
+                  _departColor = Colors.white;
+                  _arriveColor = blue100;
+                });
+              }
+            },
           ),
         ),
-        RaisedButton(
-          child: Text(
-            'Arrivée',
+        SizedBox(
+          height: 50.0,
+          width: 150.0,
+          child: RaisedButton(
+            color: _arriveColor,
+            child: Text('Arrivée',
+                style: Theme.of(context).textTheme.body1.copyWith(color: teal)),
+            elevation: 8.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topRight: _buttonBorderRadius,
+                  bottomRight: _buttonBorderRadius),
+            ),
+            onPressed: () {
+              if (_departColor == Colors.white) {
+                setState(() {
+                  _arriveColor = Colors.white;
+                  _departColor = blue100;
+                });
+              }
+            },
           ),
         ),
       ],
@@ -94,7 +134,21 @@ class _ScheduleState extends State<SchedulePage> {
   Widget _buildDatePicker() {
     return Padding(
       padding: _padding,
-      child: Container(),
+      child: _DateTimePicker(
+        labelText: 'Date',
+        selectedDate: _date,
+        selectedTime: _time,
+        selectDate: (DateTime date) {
+          setState(() {
+            _date = date;
+          });
+        },
+        selectTime: (TimeOfDay time) {
+          setState(() {
+            _time = time;
+          });
+        },
+      ),
     );
   }
 
@@ -128,6 +182,13 @@ class _ScheduleState extends State<SchedulePage> {
           color: Colors.white,
           child: Row(
             children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(width: 1.0, color: teal),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(Icons.arrow_forward),
+              ),
               Padding(
                 padding: EdgeInsets.only(left: 16.0),
                 child: Text(

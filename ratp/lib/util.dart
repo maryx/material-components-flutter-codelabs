@@ -83,9 +83,20 @@ TextTheme buildTextTheme(TextTheme base, Color color) {
 }
 
 Widget _buildTextField(BuildContext context, String text) {
-  return TextField(
-    decoration: InputDecoration(
-      labelText: text,
+  return Theme(
+    data: Theme.of(context).copyWith(
+          primaryColor: Colors.white,
+          textTheme: buildTextTheme(
+            Theme.of(context).textTheme,
+            Colors.white,
+          ),
+        ),
+    child: TextField(
+      decoration: InputDecoration(
+        labelText: text,
+        fillColor: blue50,
+        filled: true,
+      ),
     ),
   );
 }
@@ -95,6 +106,7 @@ Widget buildSearchTextFields(BuildContext context, bool showSearch) {
     children: <Widget>[
       _buildMap(),
       _buildSearchFields(context, showSearch),
+      _buildArrowToggle(),
     ],
   );
 }
@@ -142,7 +154,6 @@ Widget _buildArrowToggle() {
     child: Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(25.0)),
-        //border: Border.all(width: 1.0, color: Colors.white),
         color: blue100,
       ),
       width: 50.0,

@@ -106,9 +106,12 @@ class _BackdropState extends State<Backdrop>
       key: _backdropKey,
       children: <Widget>[
         widget.backLayer,
-        _FrontLayer(
-          onTap: _toggleBackdropLayerVisibility,
-          child: widget.frontLayer,
+        PositionedTransition(
+          rect: layerAnimation,
+          child: _FrontLayer(
+            onTap: _toggleBackdropLayerVisibility,
+            child: widget.frontLayer,
+          ),
         ),
       ],
     );
@@ -120,7 +123,10 @@ class _BackdropState extends State<Backdrop>
       elevation: 0.0,
       leading: IconButton(
         onPressed: _toggleBackdropLayerVisibility,
-        icon: Icon(Icons.menu),
+        icon: AnimatedIcon(
+          icon: AnimatedIcons.close_menu,
+          progress: _controller.view,
+        ),
       ),
       title: _BackdropTitle(
         listenable: _controller.view,

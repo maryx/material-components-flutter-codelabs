@@ -83,18 +83,53 @@ TextTheme buildTextTheme(TextTheme base, Color color) {
 }
 
 Widget _buildTextField(BuildContext context, String text) {
-  return Theme(
-    data: Theme.of(context).copyWith(
-        primaryColor: Colors.white,
-        textTheme: buildTextTheme(
-          Theme.of(context).textTheme,
-          Colors.white,
-        )),
-    child: TextField(
-      decoration: InputDecoration(
-        fillColor: blue50,
-        filled: true,
-        labelText: text,
+  return TextField(
+    decoration: InputDecoration(
+      labelText: text,
+    ),
+  );
+}
+
+Widget buildSearchTextFields(BuildContext context, bool showSearch) {
+  return Stack(
+    children: <Widget>[
+      _buildMap(),
+      _buildSearchFields(context, showSearch),
+    ],
+  );
+}
+
+Widget _buildSearchFields(BuildContext context, bool showSearch) {
+  return Material(
+    elevation: 8.0,
+    child: Container(
+      color: blue100,
+      height: showSearch ? 220.0 : 160.0,
+      padding: EdgeInsets.symmetric(horizontal: 40.0),
+      child: ListView(
+        children: <Widget>[
+          spacing,
+          _buildTextField(context, 'De'),
+          spacing,
+          _buildTextField(context, 'À'),
+          spacing,
+          showSearch
+              ? SizedBox(
+                  height: 50.0,
+                  child: RaisedButton(
+                    child: Text(
+                      'Chercher',
+                      style: Theme.of(context).textTheme.body1,
+                    ),
+                    elevation: 8.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(_buttonBorderRadius),
+                    ),
+                    onPressed: () {},
+                  ),
+                )
+              : Container(),
+        ],
       ),
     ),
   );
@@ -126,50 +161,12 @@ Widget _buildArrowToggle() {
   );
 }
 
-Widget buildSearchTextFields(BuildContext context, bool showSearch) {
-  return Stack(
-    children: <Widget>[
-      Positioned(
-        top: 0.0,
-        child: Image.asset(
-          'assets/map.png',
-          fit: BoxFit.fill,
-        ),
-      ),
-      Material(
-        elevation: 8.0,
-        child: Container(
-          color: blue100,
-          height: showSearch ? 220.0 : 160.0,
-          padding: EdgeInsets.symmetric(horizontal: 40.0),
-          child: ListView(
-            children: <Widget>[
-              spacing,
-              _buildTextField(context, 'De'),
-              spacing,
-              _buildTextField(context, 'À'),
-              spacing,
-              showSearch
-                  ? SizedBox(
-                      height: 50.0,
-                      child: RaisedButton(
-                        child: Text(
-                          'Chercher',
-                          style: Theme.of(context).textTheme.body1,
-                        ),
-                        elevation: 8.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(_buttonBorderRadius),
-                        ),
-                        onPressed: () {},
-                      ),
-                    )
-                  : Container(),
-            ],
-          ),
-        ),
-      ),
-      _buildArrowToggle(),
-    ],
+Widget _buildMap() {
+  return Positioned(
+    top: 0.0,
+    child: Image.asset(
+      'assets/map.png',
+      fit: BoxFit.fill,
+    ),
   );
 }

@@ -15,7 +15,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-
 import 'backdrop.dart';
 import 'category_menu_page.dart';
 import 'home.dart';
@@ -53,7 +52,6 @@ class _RATPAppState extends State<RATPApp> {
         frontTitle: Text(categoryMap[_currentCategory].toUpperCase()),
         backTitle: Text('MENU'),
       ),
-      theme: _buildTheme(),
     );
   }
 
@@ -95,11 +93,6 @@ ThemeData _buildTheme() {
       textTheme: ButtonTextTheme.accent,
     ),
     primaryIconTheme: base.iconTheme.copyWith(color: blue100),
-    inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4.0),
-      ),
-    ),
     textTheme: buildTextTheme(base.textTheme, blue100), // was white
     primaryTextTheme: buildTextTheme(base.primaryTextTheme, blue100),
     accentTextTheme: buildTextTheme(base.accentTextTheme, blue100),

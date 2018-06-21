@@ -20,86 +20,6 @@ import 'util.dart';
 const double _kFlingVelocity = 2.0;
 const double _layerTitleHeight = 48.0;
 
-class _FrontLayer extends StatelessWidget {
-  const _FrontLayer({
-    Key key,
-    this.onTap,
-    this.child,
-  }) : super(key: key);
-
-  final VoidCallback onTap;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: blue100,
-      elevation: 16.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(46.0)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: onTap,
-            child: Container(
-              height: _layerTitleHeight,
-              alignment: AlignmentDirectional.centerStart,
-            ),
-          ),
-          Expanded(
-            child: child,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _BackdropTitle extends AnimatedWidget {
-  final Widget frontTitle;
-  final Widget backTitle;
-
-  const _BackdropTitle({
-    Key key,
-    Listenable listenable,
-    this.frontTitle,
-    this.backTitle,
-  }) : super(key: key, listenable: listenable);
-
-  @override
-  Widget build(BuildContext context) {
-    final Animation<double> animation = this.listenable;
-    return DefaultTextStyle(
-      style: Theme.of(context).primaryTextTheme.title,
-      softWrap: false,
-      overflow: TextOverflow.ellipsis,
-      // Here, we do a custom cross fade between backTitle and frontTitle.
-      // This makes a smooth animation between the two texts.
-      child: Stack(
-        children: <Widget>[
-          Opacity(
-            opacity: CurvedAnimation(
-              parent: ReverseAnimation(animation),
-              curve: Interval(0.5, 1.0),
-            ).value,
-            child: backTitle,
-          ),
-          Opacity(
-            opacity: CurvedAnimation(
-              parent: animation,
-              curve: Interval(0.5, 1.0),
-            ).value,
-            child: frontTitle,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 /// Builds a Backdrop.
 ///
 /// A Backdrop widget has two layers, front and back. The front layer is shown
@@ -186,12 +106,9 @@ class _BackdropState extends State<Backdrop>
       key: _backdropKey,
       children: <Widget>[
         widget.backLayer,
-        PositionedTransition(
-          rect: layerAnimation,
-          child: _FrontLayer(
-            onTap: _toggleBackdropLayerVisibility,
-            child: widget.frontLayer,
-          ),
+        _FrontLayer(
+          onTap: _toggleBackdropLayerVisibility,
+          child: widget.frontLayer,
         ),
       ],
     );
@@ -203,10 +120,7 @@ class _BackdropState extends State<Backdrop>
       elevation: 0.0,
       leading: IconButton(
         onPressed: _toggleBackdropLayerVisibility,
-        icon: AnimatedIcon(
-          icon: AnimatedIcons.close_menu,
-          progress: _controller.view,
-        ),
+        icon: Icon(Icons.menu),
       ),
       title: _BackdropTitle(
         listenable: _controller.view,
@@ -232,6 +146,86 @@ class _BackdropState extends State<Backdrop>
       appBar: appBar,
       body: LayoutBuilder(
         builder: _buildStack,
+      ),
+    );
+  }
+}
+
+class _FrontLayer extends StatelessWidget {
+  const _FrontLayer({
+    Key key,
+    this.onTap,
+    this.child,
+  }) : super(key: key);
+
+  final VoidCallback onTap;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: blue100,
+      elevation: 16.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(46.0)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: onTap,
+            child: Container(
+              height: _layerTitleHeight,
+              alignment: AlignmentDirectional.centerStart,
+            ),
+          ),
+          Expanded(
+            child: child,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _BackdropTitle extends AnimatedWidget {
+  final Widget frontTitle;
+  final Widget backTitle;
+
+  const _BackdropTitle({
+    Key key,
+    Listenable listenable,
+    this.frontTitle,
+    this.backTitle,
+  }) : super(key: key, listenable: listenable);
+
+  @override
+  Widget build(BuildContext context) {
+    final Animation<double> animation = this.listenable;
+    return DefaultTextStyle(
+      style: Theme.of(context).primaryTextTheme.title,
+      softWrap: false,
+      overflow: TextOverflow.ellipsis,
+      // Here, we do a custom cross fade between backTitle and frontTitle.
+      // This makes a smooth animation between the two texts.
+      child: Stack(
+        children: <Widget>[
+          Opacity(
+            opacity: CurvedAnimation(
+              parent: ReverseAnimation(animation),
+              curve: Interval(0.5, 1.0),
+            ).value,
+            child: backTitle,
+          ),
+          Opacity(
+            opacity: CurvedAnimation(
+              parent: animation,
+              curve: Interval(0.5, 1.0),
+            ).value,
+            child: frontTitle,
+          ),
+        ],
       ),
     );
   }
